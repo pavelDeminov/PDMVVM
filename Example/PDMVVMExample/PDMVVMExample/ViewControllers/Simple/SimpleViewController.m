@@ -41,8 +41,8 @@
 
 - (IBAction)save:(id)sender {
     [self simpleViewModel].savingValue = self.textField.text;
-    UIAlertController *alert = [UIAlertController con]
-    NSLog(@"%@",[self simpleViewModel].dictionary);
+    //UIAlertController *alert = [UIAlertController con]
+    //NSLog(@"%@",[self simpleViewModel].dictionary);
 }
 
 @end
