@@ -8,10 +8,20 @@
 
 import UIKit
 
+protocol PDMVVMViewModelDelegate {
+    func viewModelUpdated(viewModel: PDMVVMViewModel)
+}
+
 class PDMVVMViewModel: NSObject {
 
-    var model: Any?
-    
+    var model: Any? {
+        didSet {
+            if let model = model as? PDMVVMModel {
+                model.updatedDelegate = self
+            }
+        }
+    }
+    var viewModeldDelegate: PDMVVMViewModelDelegate?
     var title: String? {
         get {
             if let modelInfo = model as? PDMVVMModelInfo {
@@ -47,4 +57,12 @@ class PDMVVMViewModel: NSObject {
         
     }
     
+}
+
+extension PDMVVMViewModel: PDMVVMModelUpdated {
+    func modelUpdated(model: Any) {
+        if let viewModeldDelegate = viewModeldDelegate {
+            viewModeldDelegate.viewModelUpdated(viewModel: self)
+        }
+    }
 }

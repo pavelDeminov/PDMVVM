@@ -65,7 +65,8 @@ class PDMVVMViewController: UIViewController {
         }
         
         if let cls = viewModelClass as? PDMVVMViewModel.Type {
-            self.viewModel = cls.init(withModel: nil)
+            viewModel = cls.init(withModel: nil)
+            viewModel?.viewModeldDelegate = self
         }
         
     }
@@ -89,4 +90,11 @@ class PDMVVMViewController: UIViewController {
     }
     */
 
+}
+
+extension PDMVVMViewController : PDMVVMViewModelDelegate {
+    
+    @objc func viewModelUpdated(viewModel: PDMVVMViewModel) {
+         updateUI()
+    }
 }

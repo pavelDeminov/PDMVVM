@@ -9,6 +9,5 @@
 import Foundation
 
 protocol PDMVVMModelInfo {
-    var mvvmTitle: String? { get set }
-    
+    var mvvmTitle: String? { get set }    
 }

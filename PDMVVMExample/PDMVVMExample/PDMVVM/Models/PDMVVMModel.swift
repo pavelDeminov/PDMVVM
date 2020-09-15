@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol PDMVVMModelUpdated {
+    func modelUpdated(model: Any)
+}
+
 class PDMVVMModel: NSObject  {
+    
+    var updatedDelegate: PDMVVMModelUpdated?
+    
     var mvvmTitle: String?
     var mvvmApiKey: String?
     var mvvmImageName: String?

@@ -12,9 +12,16 @@ class CollectionPDMVVMViewController: SectionsPDMVVMViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    
+    override var viewModel: PDMVVMViewModel? {
+        didSet {
+            collectionViewModel?.sectionsUpdatedDelegate = self
+            collectionViewModel?.viewModeldDelegate = self
+        }
+    }
     internal var collectionViewModel: CollectionPDMVVMViewModel? {
         get {
-            return super.viewModel as? CollectionPDMVVMViewModel
+            return viewModel as? CollectionPDMVVMViewModel
         }
     }
     
@@ -30,13 +37,15 @@ class CollectionPDMVVMViewController: SectionsPDMVVMViewController {
         if  let collectionViewModel = collectionViewModel {
             if #available(iOS 10.0, *) {
                 layout.estimatedItemSize = collectionViewModel.automaticItemSize() ? UICollectionViewFlowLayout.automaticSize : CGSize.zero
-                //layout.itemSize = CGSize(width: 50, height: 50)
             }
             layout.scrollDirection = collectionViewModel.scrollDirection()
             layout.sectionFootersPinToVisibleBounds = collectionViewModel.sectionFootersPinToVisibleBounds()
             layout.sectionHeadersPinToVisibleBounds = collectionViewModel.sectionHeadersPinToVisibleBounds()
         }
         collectionView.collectionViewLayout = layout
+        
+        collectionViewModel?.sectionsUpdatedDelegate = self
+        collectionViewModel?.viewModeldDelegate = self
         
     }
     
@@ -109,12 +118,7 @@ extension CollectionPDMVVMViewController: UICollectionViewDataSource, UICollecti
         if viewModel != nil {
             cell?.viewModel = viewModel
         }
-        //cell?.separator.hidden = !collectionViewModel.shouldShowSeparator(for: indexPath)
-        
-        //cell?.roundCorners(collectionViewModel.corners(for: indexPath))
-        //cell?.showShadow(collectionViewModel.shouldShowShadow(for: indexPath))
-        
-        
+
         prepare(cell, for: indexPath)
         
         return cell!
@@ -250,4 +254,90 @@ extension CollectionPDMVVMViewController: UICollectionViewDelegateFlowLayout {
         return sectionsViewModel != nil ? collectionViewModel!.insetForSection(at: section) : UIEdgeInsets.zero
     }
  
+}
+
+extension CollectionPDMVVMViewController : PDMVVMSectionsViewModelDelegate {
+    
+    override func viewModelUpdated(viewModel: PDMVVMViewModel) {
+        super.viewModelUpdated(viewModel: viewModel)
+         updateUI()
+    }
+    
+    func viewModel(_ viewModel: PDMVVMViewModel?, didDeleteModel model: Any?, at indexPath: IndexPath?, completion: @escaping (_ finished: Bool) -> Void) {
+        
+        if let indexPath = indexPath {
+            collectionView.performBatchUpdates({
+                collectionView.deleteItems(at: [indexPath])
+            }) { (success) in
+                
+            }
+        }
+    }
+
+    func viewModel(_ viewModel: PDMVVMViewModel?, didInsertModel model: Any?, at indexPath: IndexPath?, completion: @escaping (_ finished: Bool) -> Void) {
+        if let indexPath = indexPath {
+            collectionView.performBatchUpdates({
+                collectionView.insertItems(at: [indexPath])
+            }) { (success) in
+                       
+            }
+        }
+    }
+
+    func viewModel(_ viewModel: PDMVVMViewModel?, didUpdateModel model: Any?, at indexPath: IndexPath?) {
+        
+        if let indexPath = indexPath, let cell = collectionView.cellForItem(at: indexPath) as? PDMVVMCollectionViewCell {
+            collectionView.collectionViewLayout.invalidateLayout()
+            cell.updateUI()
+        }
+    }
+
+    func viewModelsUpdated(atIndexPaths indexPaths: [IndexPath]?) {
+        if let indexPaths = indexPaths {
+            collectionView.reloadItems(at: indexPaths)
+        }
+        
+    }
+    
+    func sectionReloadSections(_ indexSet: IndexSet?) {
+        if let indexSet = indexSet {
+            collectionView.reloadSections(indexSet)
+        }
+    }
+
+    func sectionViewModelDidInsertSections(at indexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void) {
+        
+        if let indexSet = indexSet {
+            collectionView.performBatchUpdates({
+                collectionView.insertSections(indexSet)
+            }, completion: completion)
+        }
+    }
+
+    func sectionViewModelDidDeleteSections(at indexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void) {
+        if let indexSet = indexSet {
+            collectionView.performBatchUpdates({
+                collectionView.deleteSections(indexSet)
+            }, completion: completion)
+        }
+    }
+
+    func sectionReloadSections(_ indexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void) {
+        if let indexSet = indexSet {
+            collectionView.performBatchUpdates({
+                collectionView.reloadSections(indexSet)
+            }, completion: completion)
+        }
+    }
+
+    func sectionViewModelDidInsertSections(at insertedIndexSet: IndexSet?, deleteSectionsAt deletedindexSet: IndexSet?, reloadSectionsAt reloadedIndexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void) {
+        
+        if let insertedIndexSet = insertedIndexSet,let deletedindexSet = deletedindexSet, let reloadedIndexSet = reloadedIndexSet {
+            collectionView.performBatchUpdates({
+                collectionView.insertSections(insertedIndexSet)
+                collectionView.deleteSections(deletedindexSet)
+                collectionView.reloadSections(reloadedIndexSet)
+            }, completion: completion)
+        }
+    }
 }

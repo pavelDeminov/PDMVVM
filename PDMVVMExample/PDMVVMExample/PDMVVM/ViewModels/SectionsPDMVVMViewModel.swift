@@ -8,9 +8,56 @@
 
 import UIKit
 
+protocol PDMVVMSectionsViewModelDelegate {
+    func viewModel(_ viewModel: PDMVVMViewModel?, didDeleteModel model: Any?, at indexPath: IndexPath?, completion: @escaping (_ finished: Bool) -> Void)
+
+    func viewModel(_ viewModel: PDMVVMViewModel?, didInsertModel model: Any?, at indexPath: IndexPath?, completion: @escaping (_ finished: Bool) -> Void)
+
+    func viewModel(_ viewModel: PDMVVMViewModel?, didUpdateModel model: Any?, at indexPath: IndexPath?)
+
+    func viewModelsUpdated(atIndexPaths indexPaths: [IndexPath]?)
+    
+    func sectionReloadSections(_ indexSet: IndexSet?)
+
+    func sectionViewModelDidInsertSections(at indexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void)
+
+    func sectionViewModelDidDeleteSections(at indexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void)
+
+    func sectionReloadSections(_ indexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void)
+
+    func sectionViewModelDidInsertSections(
+        at insertedIndexSet: IndexSet?,
+        deleteSectionsAt deletedindexSet: IndexSet?,
+        reloadSectionsAt reloadedIndexSet: IndexSet?,
+        completion: @escaping (_ finished: Bool) -> Void
+    )
+
+}
+
 class SectionsPDMVVMViewModel: PDMVVMViewModel {
     
-    internal var sections: [PDMVVMSectionInfo] = []
+    var sectionsUpdatedDelegate: PDMVVMSectionsViewModelDelegate?
+    
+    internal func automaticItemSize() -> Bool {
+        return true
+    }
+    
+    public func refreshData() {
+        setup()
+        viewModeldDelegate?.viewModelUpdated(viewModel: self)
+    }
+    
+    internal var sections: [PDMVVMSectionInfo] = [] {
+        didSet {
+            for sectionInfo in sections {
+                if let viewModels = sectionInfo.sectionViewModels {
+                    for viewModel in viewModels {
+                        viewModel.viewModeldDelegate = self
+                    }
+                }
+            }
+        }
+    }
     
     internal var numberOfSections: Int {
         return sections.count
@@ -71,8 +118,30 @@ class SectionsPDMVVMViewModel: PDMVVMViewModel {
         }
     }
     
-    internal func automaticItemSize() -> Bool {
-        return true
+    func indexPath(for viewModel: PDMVVMViewModel?) -> IndexPath? {
+        var indexPath: IndexPath?
+        
+        for sectionInfo in sections {
+            if let viewModels = sectionInfo.sectionViewModels {
+                for viewModel in viewModels {
+                    if let section = sections.firstIndex(where: { (info) -> Bool in
+                        return info == sectionInfo
+                    }), let row = viewModels.firstIndex(of: viewModel) {
+                         indexPath = IndexPath(row: row, section: section)
+                    }
+                   
+                }
+            }
+        }
+        return indexPath
     }
     
+}
+
+extension SectionsPDMVVMViewModel: PDMVVMViewModelDelegate {
+    func viewModelUpdated(viewModel: PDMVVMViewModel) {
+        if let delegate = sectionsUpdatedDelegate, let indexPath = indexPath(for: viewModel) {
+            delegate.viewModel(viewModel, didUpdateModel: viewModel.model, at: indexPath)
+        }
+    }
 }

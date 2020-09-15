@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol PDMVVMSectionInfo {
+protocol PDMVVMSectionInfo : NSObject {
     var sectionViewModels: [CellPDMVVMViewModel]? { get set }
     var viewModel: CellPDMVVMViewModel? { get set }
 

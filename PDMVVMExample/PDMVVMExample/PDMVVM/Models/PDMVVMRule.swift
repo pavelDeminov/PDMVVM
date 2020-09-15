@@ -29,7 +29,7 @@ class PDMVVMRule: NSObject {
     }
     
     func invalidate() {
-        state = .none
+        state = Optional.none
     }
     
 }
