@@ -8,11 +8,7 @@
 
 import UIKit
 
-class CollectionViewModel: SectionsViewModel {
-
-    internal func referenceSizeForHeader(inSection section: Int) -> CGSize {
-        return CGSize.zero
-    }
+class CollectionPDMVVMViewModel: SectionsPDMVVMViewModel {
     
     internal func scrollDirection() -> UICollectionView.ScrollDirection {
         return .vertical
@@ -41,6 +37,21 @@ class CollectionViewModel: SectionsViewModel {
        
     //enabled when automaticItemSize = false, sizeForItem will be ignored
     internal func shouldHeightEqualWidth(_ indexPath: IndexPath?) -> Bool {
+        return false
+    }
+    
+    //enabled when automaticItemSize = false
+    internal func sizeForHeader(inSection section: Int) -> CGSize {
+        return CGSize(width: 50, height: 50)
+    }
+    
+    // not work with autosizing, don't know why =/
+    internal func sectionHeadersPinToVisibleBounds() -> Bool {
+        return false
+    }
+    
+    // not work with autosizing, don't know why =/
+    internal func sectionFootersPinToVisibleBounds() -> Bool {
         return false
     }
 }

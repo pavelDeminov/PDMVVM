@@ -12,9 +12,9 @@ class CollectionPDMVVMViewController: SectionsPDMVVMViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    internal var collectionViewModel: CollectionViewModel? {
+    internal var collectionViewModel: CollectionPDMVVMViewModel? {
         get {
-            return super.viewModel as? CollectionViewModel
+            return super.viewModel as? CollectionPDMVVMViewModel
         }
     }
     
@@ -24,14 +24,17 @@ class CollectionPDMVVMViewController: SectionsPDMVVMViewController {
         collectionView.dataSource = self;
         collectionView.delegate = self;
         
-        let layout = MVVMCollectionViewFlowLayout()
+        let layout = PDMVVMCollectionViewFlowLayout()
         layout.viewModel = self.collectionViewModel
         
         if  let collectionViewModel = collectionViewModel {
             if #available(iOS 10.0, *) {
                 layout.estimatedItemSize = collectionViewModel.automaticItemSize() ? UICollectionViewFlowLayout.automaticSize : CGSize.zero
+                //layout.itemSize = CGSize(width: 50, height: 50)
             }
             layout.scrollDirection = collectionViewModel.scrollDirection()
+            layout.sectionFootersPinToVisibleBounds = collectionViewModel.sectionFootersPinToVisibleBounds()
+            layout.sectionHeadersPinToVisibleBounds = collectionViewModel.sectionHeadersPinToVisibleBounds()
         }
         collectionView.collectionViewLayout = layout
         
@@ -65,39 +68,6 @@ class CollectionPDMVVMViewController: SectionsPDMVVMViewController {
     
     internal func prepare(_ reusableView: PDMVVMCollectionReusableView?, forSection section: Int) {
     }
-    
-    
-//
-//    internal func sizeForHeaderFooter(atSection section: Int) -> CGSize {
-//
-//           guard let sectionsViewModel = sectionsViewModel  else {
-//               return CGSize.zero
-//           }
-//
-//           var size: CGSize = sectionsViewModel.referenceSizeForHeader(inSection: section)
-//           size.width = widthForReusableView()
-//
-//           var classString = sectionsViewModel.headerIdentifier(forSection: section)
-//
-//           /*
-//            classString = classString?.components(separatedBy: ".").last ?? ""
-//            let `class`: AnyClass? = NSClassFromString(classString?)
-//            if `class`?.responds(to: #selector(AnyClass.sizeForView(withViewModel:withViewWidth:))) ?? false {
-//            let sectionInfo = collectionViewModel.sectionInfo(forSection: section)
-//
-//            if sectionInfo is MVVMSectionInfo != nil {
-//            let sectionInfoMVVM = sectionInfo as? MVVMSectionInfo
-//            let viewModel: MVVMViewModel? = sectionInfoMVVM?.viewModel
-//            size.height = `class`?.sizeForView(with: viewModel, withViewWidth: size.width) ?? 0.0
-//            }
-//            }
-//            */
-//           return size
-//    }
-//
-//    internal func widthForReusableView() -> CGFloat {
-//        return collectionView.frame.size.width
-//    }
 
 }
 
@@ -116,6 +86,7 @@ extension CollectionPDMVVMViewController: UICollectionViewDataSource, UICollecti
         guard let cellIdentifier = sectionsViewModel?.cellIdentifier(for: indexPath) else {
             return UICollectionViewCell(frame: CGRect.zero)
         }
+        
         
         if reuseIdentifiersDict[cellIdentifier] == nil {
             reuseIdentifiersDict[cellIdentifier] = cellIdentifier
@@ -149,49 +120,96 @@ extension CollectionPDMVVMViewController: UICollectionViewDataSource, UICollecti
         return cell!
     }
     
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//
-//        guard let headerIdentifier = sectionsViewModel?.headerIdentifier(forSection: indexPath.section) else {
-//            return UICollectionReusableView(frame: CGRect.zero)
-//        }
-//
-//        let sectionInfo = sectionsViewModel?.sectionInfo(forSection: indexPath.section)
-//
-//        if sectionInfo != nil {
-//            if reuseIdentifiersDict[headerIdentifier] == nil {
-//                reuseIdentifiersDict[headerIdentifier] = headerIdentifier
-//                if nibExists(name: headerIdentifier) {
-//                    collectionView.register(NSClassFromString(headerIdentifier), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
-//                } else {
-//                    collectionView.register(UINib(nibName: headerIdentifier, bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
-//                }
-//            }
-//        }
-//
-//        let sectionHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier, for: indexPath) as? PDMVVMCollectionReusableView
-//
-//        if sectionInfo != nil {
-//            let sectionInfoMVVM = sectionInfo
-//            let viewModel: PDMVVMViewModel? = sectionInfoMVVM?.viewModel
-//
-//            sectionHeaderView?.viewModel = viewModel
-//        }
-//
-//        prepare(sectionHeaderView, forSection: indexPath.section)
-//
-//        return sectionHeaderView!
-//    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+
+        guard let headerIdentifier = sectionsViewModel?.headerIdentifier(forSection: indexPath.section), classExists(name: headerIdentifier) else {
+            return UICollectionReusableView(frame: CGRect.zero)
+        }
+
+        let sectionInfo = sectionsViewModel?.sectionInfo(forSection: indexPath.section)
+
+        if sectionInfo != nil {
+            if reuseIdentifiersDict[headerIdentifier] == nil {
+                reuseIdentifiersDict[headerIdentifier] = headerIdentifier
+                if nibExists(name: headerIdentifier) {
+                    collectionView.register(UINib(nibName: headerIdentifier, bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
+                } else {
+                    collectionView.register(NSClassFromString(headerIdentifier), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
+                    
+                }
+            }
+        }
+
+        let sectionHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier, for: indexPath) as? PDMVVMCollectionReusableView
+
+        if sectionInfo != nil {
+            let sectionInfoMVVM = sectionInfo
+            let viewModel: PDMVVMViewModel? = sectionInfoMVVM?.viewModel
+
+            sectionHeaderView?.viewModel = viewModel
+        }
+
+        prepare(sectionHeaderView, forSection: indexPath.section)
+
+        return sectionHeaderView!
+    }
+
 }
 
 extension CollectionPDMVVMViewController: UICollectionViewDelegateFlowLayout {
+   
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
+
         var size = CGSize(width: 50, height: 50)
         guard let collectionViewModel = collectionViewModel,
             let cellIdentifier = collectionViewModel.cellIdentifier(for: indexPath) else {
             return size
         }
+
+        if (collectionViewModel.automaticItemSize()) {
+
+            var identifier = cellIdentifier
+            var viewModelClass: AnyClass? = NSClassFromString(identifier)
+
+            if viewModelClass == nil {
+                //Not objc
+                let moduleName = NSStringFromClass(type(of: self)).components(separatedBy: ".").first
+                identifier = "\(moduleName ?? "").\(identifier)"
+                viewModelClass = NSClassFromString(identifier)
+            }
+
+            if let cls = viewModelClass as? PDMVVMCollectionViewCell.Type, let s = cls.minimalSelfSize()  {
+                size = s
+            }
+
+        } else if let mvvmLayout = collectionViewLayout as? PDMVVMCollectionViewFlowLayout    {
+            size = collectionViewModel.sizeForItem(at: indexPath)
+            let rect = CGRect(origin: CGPoint.zero, size: size)
+            size = mvvmLayout.rectForItem(at: indexPath, original: rect).size
+            if (collectionViewModel.shouldHeightEqualWidth(indexPath)) {
+                if (mvvmLayout.scrollDirection == .vertical) {
+                    size.height = size.width
+                } else {
+                    size.width = size.height
+                }
+            }
+        }
+
+        return size
+    }
+    
+ 
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+        var size = CGSize.zero
+        guard let collectionViewModel = collectionViewModel,
+            let cellIdentifier = collectionViewModel.headerIdentifier(forSection: section),
+            classExists(name: cellIdentifier) else {
+            return size
+        }
+        size = CGSize(width: 50, height: 50)
 
         if (collectionViewModel.automaticItemSize()) {
             
@@ -205,32 +223,19 @@ extension CollectionPDMVVMViewController: UICollectionViewDelegateFlowLayout {
                 viewModelClass = NSClassFromString(identifier)
             }
             
-            if let cls = viewModelClass as? PDMVVMCollectionViewCell.Type, let s = cls.minimalSelfSize()  {
+            if let cls = viewModelClass as? PDMVVMCollectionReusableView.Type, let s = cls.minimalSelfSize()  {
                 size = s
             }
             
-        } else if let mvvmLayout = collectionViewLayout as? MVVMCollectionViewFlowLayout    {
-            size = collectionViewModel.sizeForItem(at: indexPath)
+        } else if let mvvmLayout = collectionViewLayout as? PDMVVMCollectionViewFlowLayout    {
+            size = collectionViewModel.sizeForHeader(inSection: section)
             let rect = CGRect(origin: CGPoint.zero, size: size)
-            size = mvvmLayout.rectForItem(at: indexPath, original: rect).size
-            if (collectionViewModel.shouldHeightEqualWidth(indexPath)) {
-                if (mvvmLayout.scrollDirection == .vertical) {
-                    size.height = size.width
-                } else {
-                    size.width = size.height
-                }
-            }
+            size = mvvmLayout.rectForSuplementaryView(at: section, original: rect).size
         }
         
         return size
     }
-    
  
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-//        
-//        let size: CGSize = sizeForHeaderFooter(atSection: section)
-//        return size
-//    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return sectionsViewModel != nil ? collectionViewModel!.minimumLineSpacingForSection(at: section) : 0

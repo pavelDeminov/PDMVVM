@@ -8,12 +8,15 @@
 
 import UIKit
 
-class MainViewModel: CollectionViewModel {
+class MainViewModel: CollectionPDMVVMViewModel {
     
     override func setup() {
         
         var sections = [PDMVVMSectionInfo]()
+        
         var section = PDMVVMSection()
+        section.viewModel = CellPDMVVMViewModel(withModel:PDMVVMModel(withTitle:"Section 1" ), withReuseidentifier: "MainReusableView")
+        
         var viewModels = [CellPDMVVMViewModel]()
         
         var model = PDMVVMModel(withTitle:"one")
@@ -48,8 +51,10 @@ class MainViewModel: CollectionViewModel {
         sections.append(section)
         section.sectionViewModels = viewModels
         
-        /*
+        
         section = PDMVVMSection()
+        section.viewModel = CellPDMVVMViewModel(withModel:PDMVVMModel(withTitle:"Section 2" ), withReuseidentifier: "MainReusableView")
+        
         viewModels = [CellPDMVVMViewModel]()
         
         model = PDMVVMModel(withTitle:"two two two ")
@@ -62,12 +67,12 @@ class MainViewModel: CollectionViewModel {
         
         sections.append(section)
         section.sectionViewModels = viewModels
-        */
+        
         self.sections = sections
     }
     
     override func numberOfItemsInRow(forSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     override func minimumLineSpacingForSection(at section: Int) -> CGFloat {
@@ -86,9 +91,13 @@ class MainViewModel: CollectionViewModel {
            return true
     }
     
-//    override func sizeForItem(at indexPath: IndexPath?) -> CGSize {
-//           return CGSize(width: 100, height: 300)
-//    }
+    override func sizeForItem(at indexPath: IndexPath?) -> CGSize {
+           return CGSize(width: 100, height: 300)
+    }
+//    
+    override func sizeForHeader(inSection section: Int) -> CGSize {
+        return CGSize(width: 100, height: 100)
+    }
 //
 //    override func shouldHeightEqualWidth(_ indexPath: IndexPath?) -> Bool {
 //        return true
@@ -97,4 +106,5 @@ class MainViewModel: CollectionViewModel {
     override func scrollDirection() -> UICollectionView.ScrollDirection {
          return .vertical
      }
+
 }

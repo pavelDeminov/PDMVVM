@@ -16,9 +16,6 @@ class PDMVVMCollectionReusableView: UICollectionReusableView {
         }
     }
     @IBOutlet weak var plateView: UIView!
-    @IBOutlet weak var separator: UIView!
-    @IBOutlet weak var separatorHeight: NSLayoutConstraint!
-    var plateViewColor: UIColor?
     var scrollDirection: UICollectionView.ScrollDirection = .vertical
 
     class var reuseIdentifier: String? {
@@ -26,13 +23,30 @@ class PDMVVMCollectionReusableView: UICollectionReusableView {
         return classString
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        setup()
+    static var minimalSafeSizesCollection: [AnyHashable : Any]? = {
+        var minimalSafeSizesCollection =  [AnyHashable : Any]()
+        return minimalSafeSizesCollection
+    }()
+
+    class func minimalSelfSize() -> CGSize? {
+        
+        if let size = minimalSafeSizesCollection?[reuseIdentifier] as? CGSize {
+            return size
+        } else {
+            let prototype = (Bundle.main.loadNibNamed(self.reuseIdentifier ?? "", owner: nil, options: nil))?[0] as? PDMVVMCollectionReusableView
+            prototype?.autoresizingMask = UIView.AutoresizingMask(rawValue: UIView.AutoresizingMask.flexibleWidth.rawValue)
+            
+            prototype?.viewModel = nil;
+            prototype?.layoutSubviews()
+            let size = prototype?.systemLayoutSizeFitting(layoutFittingCompressedSize)
+            minimalSafeSizesCollection?[reuseIdentifier] = size
+            return size;
+        }
+       
     }
     
-    internal func setup() {
-        separatorHeight.constant = 1.0 / UIScreen.main.scale
+    override func awakeFromNib() {
+        super.awakeFromNib()
     }
     
     internal func updateUI() {

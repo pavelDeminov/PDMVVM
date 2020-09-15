@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		95C2E030250A34D5002E3108 /* MVVMCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2E02F250A34D5002E3108 /* MVVMCollectionViewFlowLayout.swift */; };
-		95C2E03225109793002E3108 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2E03125109792002E3108 /* CollectionViewModel.swift */; };
-		95E70773220A156E008BD88B /* SectionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E70772220A156E008BD88B /* SectionsViewModel.swift */; };
+		95C2E030250A34D5002E3108 /* PDMVVMCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2E02F250A34D5002E3108 /* PDMVVMCollectionViewFlowLayout.swift */; };
+		95C2E03225109793002E3108 /* CollectionPDMVVMViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2E03125109792002E3108 /* CollectionPDMVVMViewModel.swift */; };
+		95C2E03525109C71002E3108 /* PDMVVMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2E03425109C71002E3108 /* PDMVVMView.swift */; };
+		95C2E03B2510ACC0002E3108 /* MainReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2E03A2510ACC0002E3108 /* MainReusableView.swift */; };
+		95C2E03D2510ACF0002E3108 /* MainReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C2E03C2510ACF0002E3108 /* MainReusableView.xib */; };
+		95E70773220A156E008BD88B /* SectionsPDMVVMViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E70772220A156E008BD88B /* SectionsPDMVVMViewModel.swift */; };
 		95E70775220A15B8008BD88B /* PDMVVMSectionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E70774220A15B8008BD88B /* PDMVVMSectionInfo.swift */; };
 		95E70777220A1970008BD88B /* CellPDMVVMViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E70776220A1970008BD88B /* CellPDMVVMViewModel.swift */; };
 		95E70779220A1D3D008BD88B /* PDMVVMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E70778220A1D3D008BD88B /* PDMVVMViewController.swift */; };
@@ -50,9 +53,12 @@
 /* Begin PBXFileReference section */
 		8801B334E5CF30971F9847E9 /* Pods_PDMVVMExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PDMVVMExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E2805F375C403DE80E24A28 /* Pods-PDMVVMExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PDMVVMExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-PDMVVMExample/Pods-PDMVVMExample.release.xcconfig"; sourceTree = "<group>"; };
-		95C2E02F250A34D5002E3108 /* MVVMCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVMCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
-		95C2E03125109792002E3108 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
-		95E70772220A156E008BD88B /* SectionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsViewModel.swift; sourceTree = "<group>"; };
+		95C2E02F250A34D5002E3108 /* PDMVVMCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDMVVMCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		95C2E03125109792002E3108 /* CollectionPDMVVMViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPDMVVMViewModel.swift; sourceTree = "<group>"; };
+		95C2E03425109C71002E3108 /* PDMVVMView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDMVVMView.swift; sourceTree = "<group>"; };
+		95C2E03A2510ACC0002E3108 /* MainReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainReusableView.swift; sourceTree = "<group>"; };
+		95C2E03C2510ACF0002E3108 /* MainReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainReusableView.xib; sourceTree = "<group>"; };
+		95E70772220A156E008BD88B /* SectionsPDMVVMViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsPDMVVMViewModel.swift; sourceTree = "<group>"; };
 		95E70774220A15B8008BD88B /* PDMVVMSectionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDMVVMSectionInfo.swift; sourceTree = "<group>"; };
 		95E70776220A1970008BD88B /* CellPDMVVMViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellPDMVVMViewModel.swift; sourceTree = "<group>"; };
 		95E70778220A1D3D008BD88B /* PDMVVMViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDMVVMViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +134,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		95C2E03325109C40002E3108 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				95EA18C32206386500E7FEDB /* PDMVVMCollectionViewCell.swift */,
+				95EAEE8D220B6ECD00019A8B /* PDMVVMCollectionReusableView.swift */,
+				95C2E03425109C71002E3108 /* PDMVVMView.swift */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
 		95EA18362205FF9C00E7FEDB = {
 			isa = PBXGroup;
 			children = (
@@ -175,8 +191,7 @@
 		95EA18552205FFFF00E7FEDB /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				95EAEE8C220B6EB400019A8B /* Views */,
-				95EA18C22206383B00E7FEDB /* Cells */,
+				95C2E03325109C40002E3108 /* CollectionView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -187,7 +202,7 @@
 				95E70778220A1D3D008BD88B /* PDMVVMViewController.swift */,
 				95E7077A220A21EF008BD88B /* SectionsPDMVVMViewController.swift */,
 				95E7077C220A2224008BD88B /* CollectionPDMVVMViewController.swift */,
-				95C2E02F250A34D5002E3108 /* MVVMCollectionViewFlowLayout.swift */,
+				95C2E02F250A34D5002E3108 /* PDMVVMCollectionViewFlowLayout.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -197,8 +212,8 @@
 			children = (
 				95EA18C0220637B400E7FEDB /* PDMVVMViewModel.swift */,
 				95E70776220A1970008BD88B /* CellPDMVVMViewModel.swift */,
-				95E70772220A156E008BD88B /* SectionsViewModel.swift */,
-				95C2E03125109792002E3108 /* CollectionViewModel.swift */,
+				95E70772220A156E008BD88B /* SectionsPDMVVMViewModel.swift */,
+				95C2E03125109792002E3108 /* CollectionPDMVVMViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -366,22 +381,6 @@
 			path = "Collection View";
 			sourceTree = "<group>";
 		};
-		95EA18C22206383B00E7FEDB /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				95EA18C32206386500E7FEDB /* PDMVVMCollectionViewCell.swift */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		95EAEE8C220B6EB400019A8B /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				95EAEE8D220B6ECD00019A8B /* PDMVVMCollectionReusableView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		95EAEE8F220B7DEC00019A8B /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -395,6 +394,8 @@
 			children = (
 				95EAEE98220CD53300019A8B /* MainCell.swift */,
 				95EAEE9A220CD55A00019A8B /* MainCell.xib */,
+				95C2E03A2510ACC0002E3108 /* MainReusableView.swift */,
+				95C2E03C2510ACF0002E3108 /* MainReusableView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -472,6 +473,7 @@
 				95EA184A2205FF9D00E7FEDB /* Assets.xcassets in Resources */,
 				95EAEE9B220CD55A00019A8B /* MainCell.xib in Resources */,
 				95EA18482205FF9C00E7FEDB /* Main.storyboard in Resources */,
+				95C2E03D2510ACF0002E3108 /* MainReusableView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,7 +527,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95C2E030250A34D5002E3108 /* MVVMCollectionViewFlowLayout.swift in Sources */,
+				95C2E03525109C71002E3108 /* PDMVVMView.swift in Sources */,
+				95C2E030250A34D5002E3108 /* PDMVVMCollectionViewFlowLayout.swift in Sources */,
 				95EA18BD220602E500E7FEDB /* PDMVVMRule.swift in Sources */,
 				95EAEE8E220B6ECD00019A8B /* PDMVVMCollectionReusableView.swift in Sources */,
 				95EA18B42206014300E7FEDB /* MVVMSection.m in Sources */,
@@ -541,12 +544,13 @@
 				95EA18432205FF9C00E7FEDB /* AppDelegate.swift in Sources */,
 				95EA18A12206014300E7FEDB /* CollectionMVVMViewModel.m in Sources */,
 				95EAEE91220B7EDD00019A8B /* MainViewController.swift in Sources */,
+				95C2E03B2510ACC0002E3108 /* MainReusableView.swift in Sources */,
 				95EA18B32206014300E7FEDB /* MVVMModel.m in Sources */,
 				95EA18A22206014300E7FEDB /* CellViewModel.m in Sources */,
-				95C2E03225109793002E3108 /* CollectionViewModel.swift in Sources */,
+				95C2E03225109793002E3108 /* CollectionPDMVVMViewModel.swift in Sources */,
 				95EA18BB2206022F00E7FEDB /* PDMVVMModel.swift in Sources */,
 				95EA18B82206014300E7FEDB /* MVVMCollectionReusableView.m in Sources */,
-				95E70773220A156E008BD88B /* SectionsViewModel.swift in Sources */,
+				95E70773220A156E008BD88B /* SectionsPDMVVMViewModel.swift in Sources */,
 				95E70779220A1D3D008BD88B /* PDMVVMViewController.swift in Sources */,
 				95EA189F2206014300E7FEDB /* TableViewViewModel.m in Sources */,
 				95EA18B72206014300E7FEDB /* MVVMViewController.m in Sources */,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SectionsViewModel: PDMVVMViewModel {
+class SectionsPDMVVMViewModel: PDMVVMViewModel {
     
     internal var sections: [PDMVVMSectionInfo] = []
     

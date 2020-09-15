@@ -10,9 +10,9 @@ import UIKit
 
 class SectionsPDMVVMViewController: PDMVVMViewController {
     
-    internal var sectionsViewModel: SectionsViewModel? {
+    internal var sectionsViewModel: SectionsPDMVVMViewModel? {
         get {
-            return super.viewModel as? SectionsViewModel
+            return super.viewModel as? SectionsPDMVVMViewModel
         }
     }
     internal var reuseIdentifiersDict: [AnyHashable : Any] = [:]
@@ -21,6 +21,20 @@ class SectionsPDMVVMViewController: PDMVVMViewController {
         let mainBundle = Bundle.main
         let path = mainBundle.path(forResource: name, ofType: "nib")
         return path != nil;
+    }
+    
+    internal func classExists(name: String) -> Bool {
+
+        var cls: AnyClass? = NSClassFromString(name)
+        
+        if cls == nil {
+            //Not objc
+            let moduleName = NSStringFromClass(type(of: self)).components(separatedBy: ".").first
+            let identifier = "\(moduleName ?? "").\(name)"
+            cls = NSClassFromString(identifier)
+        }
+        
+        return cls != nil
     }
     
 }

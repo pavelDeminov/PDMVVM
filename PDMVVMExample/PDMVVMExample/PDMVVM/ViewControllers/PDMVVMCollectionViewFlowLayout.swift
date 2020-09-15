@@ -1,5 +1,5 @@
 //
-//  MVVMCollectionViewFlowLayout.swift
+//  PDMVVMCollectionViewFlowLayout.swift
 //  PDMVVMExample
 //
 //  Created by Pavel Deminov on 10.09.2020.
@@ -8,26 +8,28 @@
 
 import UIKit
 
-class MVVMCollectionViewFlowLayout: UICollectionViewFlowLayout {
+class PDMVVMCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
-    var viewModel: CollectionViewModel?
+    var viewModel: CollectionPDMVVMViewModel?
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        let layoutAttributes = super.layoutAttributesForElements(in: rect)
+        let superLayoutAttributes = super.layoutAttributesForElements(in: rect)
         
-        if  let superLayoutAttributes = super.layoutAttributesForElements(in: rect), let layoutAttributes = NSArray(array: superLayoutAttributes, copyItems: true) as? [UICollectionViewLayoutAttributes] {
+        if  let superLayoutAttributes = superLayoutAttributes, let layoutAttributes = NSArray(array: superLayoutAttributes, copyItems: true) as? [UICollectionViewLayoutAttributes] {
             for attributes in layoutAttributes {
                 if attributes.representedElementCategory == .cell, let customAttributes = layoutAttributesForItem(at: attributes.indexPath) {
                     attributes.frame = customAttributes.frame
                 }
             }
+            return layoutAttributes
+        } else {
+             return superLayoutAttributes
         }
         
-        return layoutAttributes
     }
     
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         
-        guard let layoutAttributes = super.layoutAttributesForItem(at: indexPath)?.copy() as? UICollectionViewLayoutAttributes
+        guard let layoutAttributes = super.layoutAttributesForItem(at: indexPath)
             else {
             return nil
         }
@@ -68,6 +70,38 @@ class MVVMCollectionViewFlowLayout: UICollectionViewFlowLayout {
             let y = insets.top + CGFloat(index) * (height + minimumLineSpacing)
             rect.origin = CGPoint(x: rect.origin.x, y: y)
             rect.size = CGSize(width: rect.width, height: height)
+        }
+        
+        return rect;
+    }
+    
+    override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        
+        guard let layoutAttributes = super.layoutAttributesForSupplementaryView(ofKind: elementKind, at: indexPath)?.copy() as? UICollectionViewLayoutAttributes
+            else {
+            return nil
+        }
+        
+        var frame = layoutAttributes.frame
+        frame = rectForSuplementaryView(at: indexPath.section, original: frame)
+        layoutAttributes.frame = frame
+        return layoutAttributes
+    }
+    
+    public func rectForSuplementaryView(at section: Int, original frame:CGRect) -> CGRect {
+        
+        var rect = frame
+        guard let collectionView = collectionView
+            else {
+                return rect
+        }
+                    
+        if self.scrollDirection == .vertical {
+            let contentWidth = collectionView.frame.size.width
+            rect.size = CGSize(width: contentWidth, height: rect.height)
+        } else {
+            let contentHeight = collectionView.frame.size.height
+            rect.size = CGSize(width: rect.width, height: contentHeight)
         }
         
         return rect;

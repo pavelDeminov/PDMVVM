@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="FF8-Ry-xfq" customClass="MainReusableView" customModule="PDMVVMExample" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="434" height="124"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cVZ-ix-flR">
+                    <rect key="frame" x="0.0" y="0.0" width="434" height="124"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o1m-eC-Zng">
+                            <rect key="frame" x="20" y="20" width="394" height="84"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="o1m-eC-Zng" secondAttribute="bottom" constant="20" id="K2x-sE-EBb"/>
+                        <constraint firstAttribute="trailing" secondItem="o1m-eC-Zng" secondAttribute="trailing" constant="20" id="PpI-Pb-NCY"/>
+                        <constraint firstItem="o1m-eC-Zng" firstAttribute="top" secondItem="cVZ-ix-flR" secondAttribute="top" constant="20" id="gDw-YI-2RZ"/>
+                        <constraint firstItem="o1m-eC-Zng" firstAttribute="leading" secondItem="cVZ-ix-flR" secondAttribute="leading" constant="20" id="tKF-Fr-agV"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="EVU-9C-vOs"/>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="cVZ-ix-flR" secondAttribute="bottom" id="Qco-6E-srm"/>
+                <constraint firstItem="cVZ-ix-flR" firstAttribute="top" secondItem="FF8-Ry-xfq" secondAttribute="top" id="hAz-Ra-GtJ"/>
+                <constraint firstItem="cVZ-ix-flR" firstAttribute="leading" secondItem="Qbd-PT-YXZ" secondAttribute="leading" id="spC-dI-pBl"/>
+                <constraint firstItem="cVZ-ix-flR" firstAttribute="trailing" secondItem="Qbd-PT-YXZ" secondAttribute="trailing" id="vcM-2A-LF6"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Qbd-PT-YXZ"/>
+            <connections>
+                <outlet property="plateView" destination="cVZ-ix-flR" id="fQs-V9-avT"/>
+                <outlet property="titleLabel" destination="o1m-eC-Zng" id="C8a-63-hBq"/>
+            </connections>
+            <point key="canvasLocation" x="139.13043478260872" y="100.44642857142857"/>
+        </collectionReusableView>
+    </objects>
+</document>
