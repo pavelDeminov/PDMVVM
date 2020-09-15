@@ -1,4 +1,0 @@
-{
-"title": "Simple ViewController Title",
-"value": "Simple ViewController Value"
-}
