@@ -20,7 +20,6 @@ Pod::Spec.new do |s|
     	models.source_files = "PDMVVM/Base/**/*.swift"
   end
 
-
   s.subspec "Section" do | views |
     	views.source_files = "PDMVVM/Section/**/*.swift"
 	views.dependency 'PDMVVM/Base'
