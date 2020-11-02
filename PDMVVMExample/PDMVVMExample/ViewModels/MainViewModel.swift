@@ -12,7 +12,7 @@ class MainViewModel: CollectionPDMVVMViewModel {
     
     override func setup() {
         
-        var sections = [PDMVVMSectionInfo]()
+        var sections = [PDMVVMSection]()
         
         var section = PDMVVMSection()
         section.viewModel = CellPDMVVMViewModel(withModel:PDMVVMModel(withTitle:"Section 1" ), withReuseidentifier: "MainReusableView")

@@ -13,7 +13,7 @@ class MainReusableView: PDMVVMCollectionReusableView {
     @IBOutlet weak var titleLabel: UILabel!
 
     override func updateUI() {
-           guard let viewModel = viewModel as? CellPDMVVMViewModel, let modelInfo = viewModel.model as? PDMVVMModelInfo else {
+           guard let viewModel = viewModel as? CellPDMVVMViewModel, let modelInfo = viewModel.model as? PDMVVMModel else {
                return
                
            }
