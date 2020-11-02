@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "PDMVVM"
-  s.version      = "0.0.3"
+  s.version      = "0.0.4"
   s.platform = :ios
 
   s.swift_versions = "5.0"
@@ -14,10 +14,10 @@ Pod::Spec.new do |s|
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author             = { "Pavel Deminov" => "pavel.d.work@gmail.com" }
 
-  s.source       = { :git => "https://github.com/sindanar/PDMVVM.git", :tag => "0.0.3" }
+  s.source       = { :git => "https://github.com/sindanar/PDMVVM.git", :tag => "0.0.4" }
   
   s.subspec "Base" do | base |
-    	base = "PDMVVM/Base/**/*.swift"
+    	base.source_files = "PDMVVM/Base/**/*.swift"
   end
 
   s.subspec "Section" do | section |
