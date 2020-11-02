@@ -16,18 +16,18 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => "https://github.com/sindanar/PDMVVM.git", :tag => "0.0.3" }
   
-  s.subspec "Base" do | models |
-    	models.source_files = "PDMVVM/Base/**/*.swift"
+  s.subspec "Base" do | base |
+    	base = "PDMVVM/Base/**/*.swift"
   end
 
-  s.subspec "Section" do | views |
-    	views.source_files = "PDMVVM/Section/**/*.swift"
-	views.dependency 'PDMVVM/Base'
+  s.subspec "Section" do | section |
+    	section.source_files = "PDMVVM/Section/**/*.swift"
+	section.dependency 'PDMVVM/Base'
   end
 
-  s.subspec "Collection" do | viewControllers |
-    	viewControllers.source_files = "PDMVVM/Collection/**/*.swift"
-	viewControllers.dependency 'PDMVVM/Section'
+  s.subspec "Collection" do | collection |
+    	collection.source_files = "PDMVVM/Collection/**/*.swift"
+	collection.dependency 'PDMVVM/Section'
   end
 
 
