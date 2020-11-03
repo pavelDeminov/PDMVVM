@@ -17,6 +17,10 @@ open class CellPDMVVMViewModel: PDMVVMViewModel {
     }
     
     required public init(withModel model: Any?) {
-        fatalError("init(withModel:) has not been implemented")
+        super.init(withModel: model)
+    }
+    
+    required public init() {
+        super.init()
     }
 }

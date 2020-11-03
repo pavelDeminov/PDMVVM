@@ -14,15 +14,15 @@ public protocol PDMVVMViewModelDelegate {
 
 open class PDMVVMViewModel: NSObject {
 
-    var model: Any? {
+    open var model: Any? {
         didSet {
             if let model = model as? PDMVVMModel {
                 model.updatedDelegate = self
             }
         }
     }
-    var viewModeldDelegate: PDMVVMViewModelDelegate?
-    var title: String? {
+    open var viewModeldDelegate: PDMVVMViewModelDelegate?
+    open var title: String? {
         get {
             if let modelInfo = model as? PDMVVMModel {
                 if (modelInfo.mvvmTitle != nil) {
@@ -50,7 +50,12 @@ open class PDMVVMViewModel: NSObject {
     required public init(withModel model: Any?) {
         super.init()
         self.model = model
-         setup()
+        setup()
+    }
+    
+    required public override init() {
+        super.init()
+        setup()
     }
     
     open func setup() {
