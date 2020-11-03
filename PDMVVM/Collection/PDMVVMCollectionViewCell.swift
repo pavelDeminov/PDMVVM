@@ -10,16 +10,14 @@ import UIKit
 
 open class PDMVVMCollectionViewCell: UICollectionViewCell {
     
-    var viewModel: PDMVVMViewModel? {
+    public var viewModel: PDMVVMViewModel? {
         didSet {
             updateUI()
         }
     }
-    @IBOutlet weak var plateView: UIView!
-    @IBOutlet weak var separator: UIView?
-    @IBOutlet weak var separatorHeight: NSLayoutConstraint?
-    var plateViewColor: UIColor?
-    var scrollDirection: UICollectionView.ScrollDirection = .vertical
+    @IBOutlet private(set) weak var plateView: UIView!
+    
+    open var scrollDirection: UICollectionView.ScrollDirection = .vertical
     
     class var reuseIdentifier: String? {
         let classString = NSStringFromClass(self.self).components(separatedBy: ".").last
@@ -49,12 +47,11 @@ open class PDMVVMCollectionViewCell: UICollectionViewCell {
     }
 
     open override func awakeFromNib() {
-         super.awakeFromNib()
+        super.awakeFromNib()
         setup()
     }
     
     open func setup() {
-        separatorHeight?.constant = 1.0 / UIScreen.main.scale
     }
     
     open func updateUI() {
