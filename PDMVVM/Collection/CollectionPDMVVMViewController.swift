@@ -258,7 +258,8 @@ extension CollectionPDMVVMViewController : PDMVVMSectionsViewModelDelegate {
     
     open override func viewModelUpdated(viewModel: PDMVVMViewModel) {
         super.viewModelUpdated(viewModel: viewModel)
-         updateUI()
+        collectionView.reloadData()
+        updateUI()
     }
     
     open func viewModel(_ viewModel: PDMVVMViewModel?, didDeleteModel model: Any?, at indexPath: IndexPath?, completion: @escaping (_ finished: Bool) -> Void) {
