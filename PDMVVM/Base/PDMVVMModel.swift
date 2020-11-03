@@ -12,7 +12,7 @@ public protocol PDMVVMModelUpdated {
     func modelUpdated(model: Any)
 }
 
-public class PDMVVMModel: NSObject  {
+open class PDMVVMModel: NSObject  {
     
     var updatedDelegate: PDMVVMModelUpdated?
     

@@ -34,7 +34,7 @@ public protocol PDMVVMSectionsViewModelDelegate {
 
 }
 
-public class SectionsPDMVVMViewModel: PDMVVMViewModel {
+open class SectionsPDMVVMViewModel: PDMVVMViewModel {
     
     var sectionsUpdatedDelegate: PDMVVMSectionsViewModelDelegate?
     

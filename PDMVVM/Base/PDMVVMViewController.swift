@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class PDMVVMViewController: UIViewController {
+open class PDMVVMViewController: UIViewController {
     
     var viewModel: PDMVVMViewModel?
     var fromCode = false

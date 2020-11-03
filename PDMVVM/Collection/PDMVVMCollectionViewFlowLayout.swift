@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class PDMVVMCollectionViewFlowLayout: UICollectionViewFlowLayout {
+open class PDMVVMCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     var viewModel: CollectionPDMVVMViewModel?
     public override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {

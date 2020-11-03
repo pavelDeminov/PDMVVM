@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class PDMVVMCollectionViewCell: UICollectionViewCell {
+open class PDMVVMCollectionViewCell: UICollectionViewCell {
     
     var viewModel: PDMVVMViewModel? {
         didSet {

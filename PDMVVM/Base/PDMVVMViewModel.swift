@@ -12,7 +12,7 @@ public protocol PDMVVMViewModelDelegate {
     func viewModelUpdated(viewModel: PDMVVMViewModel)
 }
 
-public class PDMVVMViewModel: NSObject {
+open class PDMVVMViewModel: NSObject {
 
     var model: Any? {
         didSet {
@@ -47,7 +47,7 @@ public class PDMVVMViewModel: NSObject {
         return array
     }
     
-    required init(withModel model: Any?) {
+    required public init(withModel model: Any?) {
         super.init()
         self.model = model
          setup()

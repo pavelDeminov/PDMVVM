@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class CellPDMVVMViewModel: PDMVVMViewModel {
+open class CellPDMVVMViewModel: PDMVVMViewModel {
     var reuseIdentifier: String!
     
     init(withModel model: Any?, withReuseidentifier reuseIdentifier: String) {
@@ -16,7 +16,7 @@ public class CellPDMVVMViewModel: PDMVVMViewModel {
         self.reuseIdentifier = reuseIdentifier
     }
     
-    required init(withModel model: Any?) {
+    required public init(withModel model: Any?) {
         fatalError("init(withModel:) has not been implemented")
     }
 }

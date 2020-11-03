@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class CollectionPDMVVMViewController: SectionsPDMVVMViewController {
+open class CollectionPDMVVMViewController: SectionsPDMVVMViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     

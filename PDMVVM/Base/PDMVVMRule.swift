@@ -16,7 +16,7 @@ public enum PDMVVMValidationState : Int {
 
 public typealias PDMVVMValidationBlock = (Any?, String?) -> Bool
 
-public class PDMVVMRule: NSObject {
+open class PDMVVMRule: NSObject {
 
     var validationBlock: PDMVVMValidationBlock?
     var error = ""

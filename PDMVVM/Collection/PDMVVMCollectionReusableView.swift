@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class PDMVVMCollectionReusableView: UICollectionReusableView {
+open class PDMVVMCollectionReusableView: UICollectionReusableView {
     
     var viewModel: PDMVVMViewModel? {
         didSet {
