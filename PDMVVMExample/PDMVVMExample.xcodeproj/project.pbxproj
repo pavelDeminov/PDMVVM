@@ -103,9 +103,9 @@
 		958E88542550302600DE5C0E /* Section */ = {
 			isa = PBXGroup;
 			children = (
-				958E88562550321700DE5C0E /* CellPDMVVMViewModel.swift */,
 				95C2E04F251221EE002E3108 /* SectionsPDMVVMViewController.swift */,
 				95C2E047251221EE002E3108 /* SectionsPDMVVMViewModel.swift */,
+				958E88562550321700DE5C0E /* CellPDMVVMViewModel.swift */,
 				95C2E04C251221EE002E3108 /* PDMVVMSection.swift */,
 			);
 			path = Section;

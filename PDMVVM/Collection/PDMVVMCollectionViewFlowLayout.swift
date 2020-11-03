@@ -11,7 +11,7 @@ import UIKit
 open class PDMVVMCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     var viewModel: CollectionPDMVVMViewModel?
-    public override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    open override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         let superLayoutAttributes = super.layoutAttributesForElements(in: rect)
         
         if  let superLayoutAttributes = superLayoutAttributes, let layoutAttributes = NSArray(array: superLayoutAttributes, copyItems: true) as? [UICollectionViewLayoutAttributes] {
@@ -27,7 +27,7 @@ open class PDMVVMCollectionViewFlowLayout: UICollectionViewFlowLayout {
         
     }
     
-    public override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    open override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         
         guard let layoutAttributes = super.layoutAttributesForItem(at: indexPath)
             else {
@@ -41,7 +41,7 @@ open class PDMVVMCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     }
     
-    public func rectForItem(at indexPath: IndexPath, original frame:CGRect) -> CGRect {
+    open func rectForItem(at indexPath: IndexPath, original frame:CGRect) -> CGRect {
         
         var rect = frame
         guard let collectionView = collectionView,
@@ -75,7 +75,7 @@ open class PDMVVMCollectionViewFlowLayout: UICollectionViewFlowLayout {
         return rect;
     }
     
-    public override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    open override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         
         guard let layoutAttributes = super.layoutAttributesForSupplementaryView(ofKind: elementKind, at: indexPath)?.copy() as? UICollectionViewLayoutAttributes
             else {
@@ -88,7 +88,7 @@ open class PDMVVMCollectionViewFlowLayout: UICollectionViewFlowLayout {
         return layoutAttributes
     }
     
-    public func rectForSuplementaryView(at section: Int, original frame:CGRect) -> CGRect {
+    open func rectForSuplementaryView(at section: Int, original frame:CGRect) -> CGRect {
         
         var rect = frame
         guard let collectionView = collectionView

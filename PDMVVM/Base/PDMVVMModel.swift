@@ -70,7 +70,7 @@ open class PDMVVMModel: NSObject  {
         mvvmAPIError = error
     }
     
-    func validate() {
+    open func validate() {
         invalidate()
         if let rules = rules {
             for rule in rules {
@@ -84,7 +84,7 @@ open class PDMVVMModel: NSObject  {
         
     }
     
-    func invalidate() {
+    open func invalidate() {
         errorRule = nil
         mvvmAPIError = nil
         

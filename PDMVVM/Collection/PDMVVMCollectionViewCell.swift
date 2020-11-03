@@ -31,7 +31,7 @@ open class PDMVVMCollectionViewCell: UICollectionViewCell {
         return minimalSafeSizesCollection
     }()
 
-    class func minimalSelfSize() -> CGSize? {
+    open class func minimalSelfSize() -> CGSize? {
         
         if let size = minimalSafeSizesCollection?[reuseIdentifier] as? CGSize {
             return size
@@ -48,23 +48,20 @@ open class PDMVVMCollectionViewCell: UICollectionViewCell {
        
     }
 
-    public override func awakeFromNib() {
+    open override func awakeFromNib() {
          super.awakeFromNib()
         setup()
-        
-        
     }
     
-    internal func setup() {
+    open func setup() {
         separatorHeight?.constant = 1.0 / UIScreen.main.scale
     }
     
-    internal func updateUI() {
-        
+    open func updateUI() {
         
     }
     
-    public override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+    open override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         
         self.layoutIfNeeded()
         let attributes = super.preferredLayoutAttributesFitting(layoutAttributes)

@@ -53,14 +53,14 @@ open class PDMVVMViewModel: NSObject {
          setup()
     }
     
-    internal func setup() {
+    open func setup() {
         
     }
     
 }
 
 extension PDMVVMViewModel: PDMVVMModelUpdated {
-    public func modelUpdated(model: Any) {
+    open func modelUpdated(model: Any) {
         if let viewModeldDelegate = viewModeldDelegate {
             viewModeldDelegate.viewModelUpdated(viewModel: self)
         }

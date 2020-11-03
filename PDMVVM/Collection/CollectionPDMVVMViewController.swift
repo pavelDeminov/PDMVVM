@@ -18,13 +18,13 @@ open class CollectionPDMVVMViewController: SectionsPDMVVMViewController {
             collectionViewModel?.viewModeldDelegate = self
         }
     }
-    internal var collectionViewModel: CollectionPDMVVMViewModel? {
+    public var collectionViewModel: CollectionPDMVVMViewModel? {
         get {
             return viewModel as? CollectionPDMVVMViewModel
         }
     }
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.dataSource = self;
@@ -71,25 +71,25 @@ open class CollectionPDMVVMViewController: SectionsPDMVVMViewController {
         }
     }
     
-    internal func prepare(_ cell: PDMVVMCollectionViewCell?, for indexPath: IndexPath?) {
+    open func prepare(_ cell: PDMVVMCollectionViewCell?, for indexPath: IndexPath?) {
     }
     
-    internal func prepare(_ reusableView: PDMVVMCollectionReusableView?, forSection section: Int) {
+    open func prepare(_ reusableView: PDMVVMCollectionReusableView?, forSection section: Int) {
     }
 
 }
 
 extension CollectionPDMVVMViewController: UICollectionViewDataSource, UICollectionViewDelegate  {
     
-    public func numberOfSections(in collectionView: UICollectionView) -> Int {
+    open func numberOfSections(in collectionView: UICollectionView) -> Int {
         return sectionsViewModel != nil ? sectionsViewModel!.numberOfSections : 0
     }
     
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return sectionsViewModel != nil ? sectionsViewModel!.numberOfItems(inSection: section) : 0
     }
     
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let viewModel = sectionsViewModel?.viewModel(at: indexPath)
         guard let cellIdentifier = sectionsViewModel?.cellIdentifier(for: indexPath) else {
             return UICollectionViewCell(frame: CGRect.zero)
@@ -124,7 +124,7 @@ extension CollectionPDMVVMViewController: UICollectionViewDataSource, UICollecti
     }
     
     
-    public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 
         guard let headerIdentifier = sectionsViewModel?.headerIdentifier(forSection: indexPath.section), classExists(name: headerIdentifier) else {
             return UICollectionReusableView(frame: CGRect.zero)
@@ -162,8 +162,7 @@ extension CollectionPDMVVMViewController: UICollectionViewDataSource, UICollecti
 
 extension CollectionPDMVVMViewController: UICollectionViewDelegateFlowLayout {
    
-    
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         var size = CGSize(width: 50, height: 50)
         guard let collectionViewModel = collectionViewModel,
@@ -202,9 +201,8 @@ extension CollectionPDMVVMViewController: UICollectionViewDelegateFlowLayout {
 
         return size
     }
-    
  
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
         var size = CGSize.zero
         guard let collectionViewModel = collectionViewModel,
@@ -238,17 +236,16 @@ extension CollectionPDMVVMViewController: UICollectionViewDelegateFlowLayout {
         
         return size
     }
- 
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return sectionsViewModel != nil ? collectionViewModel!.minimumLineSpacingForSection(at: section) : 0
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return sectionsViewModel != nil ? collectionViewModel!.minimumInteritemSpacingForSection(at: section) : 0
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
         return sectionsViewModel != nil ? collectionViewModel!.insetForSection(at: section) : UIEdgeInsets.zero
     }
@@ -257,12 +254,12 @@ extension CollectionPDMVVMViewController: UICollectionViewDelegateFlowLayout {
 
 extension CollectionPDMVVMViewController : PDMVVMSectionsViewModelDelegate {
     
-    public override func viewModelUpdated(viewModel: PDMVVMViewModel) {
+    open override func viewModelUpdated(viewModel: PDMVVMViewModel) {
         super.viewModelUpdated(viewModel: viewModel)
          updateUI()
     }
     
-    public func viewModel(_ viewModel: PDMVVMViewModel?, didDeleteModel model: Any?, at indexPath: IndexPath?, completion: @escaping (_ finished: Bool) -> Void) {
+    open func viewModel(_ viewModel: PDMVVMViewModel?, didDeleteModel model: Any?, at indexPath: IndexPath?, completion: @escaping (_ finished: Bool) -> Void) {
         
         if let indexPath = indexPath {
             collectionView.performBatchUpdates({
@@ -273,7 +270,7 @@ extension CollectionPDMVVMViewController : PDMVVMSectionsViewModelDelegate {
         }
     }
 
-    public func viewModel(_ viewModel: PDMVVMViewModel?, didInsertModel model: Any?, at indexPath: IndexPath?, completion: @escaping (_ finished: Bool) -> Void) {
+    open func viewModel(_ viewModel: PDMVVMViewModel?, didInsertModel model: Any?, at indexPath: IndexPath?, completion: @escaping (_ finished: Bool) -> Void) {
         if let indexPath = indexPath {
             collectionView.performBatchUpdates({
                 collectionView.insertItems(at: [indexPath])
@@ -283,7 +280,7 @@ extension CollectionPDMVVMViewController : PDMVVMSectionsViewModelDelegate {
         }
     }
 
-    public func viewModel(_ viewModel: PDMVVMViewModel?, didUpdateModel model: Any?, at indexPath: IndexPath?) {
+    open func viewModel(_ viewModel: PDMVVMViewModel?, didUpdateModel model: Any?, at indexPath: IndexPath?) {
         
         if let indexPath = indexPath, let cell = collectionView.cellForItem(at: indexPath) as? PDMVVMCollectionViewCell {
             collectionView.collectionViewLayout.invalidateLayout()
@@ -291,20 +288,20 @@ extension CollectionPDMVVMViewController : PDMVVMSectionsViewModelDelegate {
         }
     }
 
-    public func viewModelsUpdated(atIndexPaths indexPaths: [IndexPath]?) {
+    open func viewModelsUpdated(atIndexPaths indexPaths: [IndexPath]?) {
         if let indexPaths = indexPaths {
             collectionView.reloadItems(at: indexPaths)
         }
         
     }
     
-    public func sectionReloadSections(_ indexSet: IndexSet?) {
+    open func sectionReloadSections(_ indexSet: IndexSet?) {
         if let indexSet = indexSet {
             collectionView.reloadSections(indexSet)
         }
     }
 
-    public func sectionViewModelDidInsertSections(at indexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void) {
+    open func sectionViewModelDidInsertSections(at indexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void) {
         
         if let indexSet = indexSet {
             collectionView.performBatchUpdates({
@@ -313,7 +310,7 @@ extension CollectionPDMVVMViewController : PDMVVMSectionsViewModelDelegate {
         }
     }
 
-    public func sectionViewModelDidDeleteSections(at indexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void) {
+    open func sectionViewModelDidDeleteSections(at indexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void) {
         if let indexSet = indexSet {
             collectionView.performBatchUpdates({
                 collectionView.deleteSections(indexSet)
@@ -321,7 +318,7 @@ extension CollectionPDMVVMViewController : PDMVVMSectionsViewModelDelegate {
         }
     }
 
-    public func sectionReloadSections(_ indexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void) {
+    open func sectionReloadSections(_ indexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void) {
         if let indexSet = indexSet {
             collectionView.performBatchUpdates({
                 collectionView.reloadSections(indexSet)
@@ -329,7 +326,7 @@ extension CollectionPDMVVMViewController : PDMVVMSectionsViewModelDelegate {
         }
     }
 
-    public func sectionViewModelDidInsertSections(at insertedIndexSet: IndexSet?, deleteSectionsAt deletedindexSet: IndexSet?, reloadSectionsAt reloadedIndexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void) {
+    open func sectionViewModelDidInsertSections(at insertedIndexSet: IndexSet?, deleteSectionsAt deletedindexSet: IndexSet?, reloadSectionsAt reloadedIndexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void) {
         
         if let insertedIndexSet = insertedIndexSet,let deletedindexSet = deletedindexSet, let reloadedIndexSet = reloadedIndexSet {
             collectionView.performBatchUpdates({

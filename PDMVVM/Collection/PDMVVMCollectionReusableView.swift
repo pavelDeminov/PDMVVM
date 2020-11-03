@@ -28,7 +28,7 @@ open class PDMVVMCollectionReusableView: UICollectionReusableView {
         return minimalSafeSizesCollection
     }()
 
-    class func minimalSelfSize() -> CGSize? {
+    class open func minimalSelfSize() -> CGSize? {
         
         if let size = minimalSafeSizesCollection?[reuseIdentifier] as? CGSize {
             return size
@@ -45,12 +45,7 @@ open class PDMVVMCollectionReusableView: UICollectionReusableView {
        
     }
     
-    public override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
-    internal func updateUI() {
-        
+    open func updateUI() {
         
     }
     

@@ -22,13 +22,13 @@ open class PDMVVMRule: NSObject {
     var error = ""
     var state: PDMVVMValidationState?
     
-    func validate(_ value: Any?) {
+    open func validate(_ value: Any?) {
         if let validationBlock = validationBlock {
             state = validationBlock(value, error) ? .valid : .invalid
         }
     }
     
-    func invalidate() {
+    open func invalidate() {
         state = Optional.none
     }
     

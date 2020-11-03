@@ -38,16 +38,16 @@ open class SectionsPDMVVMViewModel: PDMVVMViewModel {
     
     var sectionsUpdatedDelegate: PDMVVMSectionsViewModelDelegate?
     
-    internal func automaticItemSize() -> Bool {
+    open func automaticItemSize() -> Bool {
         return true
     }
     
-    public func refreshData() {
+    open func refreshData() {
         setup()
         viewModeldDelegate?.viewModelUpdated(viewModel: self)
     }
     
-    internal var sections: [PDMVVMSection] = [] {
+    open var sections: [PDMVVMSection] = [] {
         didSet {
             for sectionInfo in sections {
                 if let viewModels = sectionInfo.sectionViewModels {
@@ -59,15 +59,15 @@ open class SectionsPDMVVMViewModel: PDMVVMViewModel {
         }
     }
     
-    internal var numberOfSections: Int {
+    open var numberOfSections: Int {
         return sections.count
     }
     
-    internal func sectionInfo(forSection section: Int) -> PDMVVMSection? {
+    open func sectionInfo(forSection section: Int) -> PDMVVMSection? {
         return sections[section]
     }
     
-    internal func numberOfItems(inSection section: Int) -> Int {
+    open func numberOfItems(inSection section: Int) -> Int {
         if let sectionInfo = self.sectionInfo(forSection: section), let viewModels = sectionInfo.sectionViewModels {
             return viewModels.count
         } else {
@@ -75,7 +75,7 @@ open class SectionsPDMVVMViewModel: PDMVVMViewModel {
         }
     }
     
-    internal func viewModel(at indexPath: IndexPath?) -> CellPDMVVMViewModel? {
+    open func viewModel(at indexPath: IndexPath?) -> CellPDMVVMViewModel? {
         if let indexPath = indexPath, let sectionInfo = self.sectionInfo(forSection: indexPath.section),
             let viewModels = sectionInfo.sectionViewModels {
             let item = viewModels[indexPath.row]
@@ -85,7 +85,7 @@ open class SectionsPDMVVMViewModel: PDMVVMViewModel {
         }
     }
     
-    internal func cellIdentifier(for indexPath: IndexPath) -> String? {
+    open func cellIdentifier(for indexPath: IndexPath) -> String? {
         if let viewModel = self.viewModel(at: indexPath) {
             return viewModel.reuseIdentifier
         } else {
@@ -96,7 +96,7 @@ open class SectionsPDMVVMViewModel: PDMVVMViewModel {
         }
     }
     
-    internal func headerIdentifier(forSection section: Int) -> String? {
+    open func headerIdentifier(forSection section: Int) -> String? {
         
         if let sectionInfo = self.sectionInfo(forSection: section),let viewModel = sectionInfo.viewModel {
             return viewModel.reuseIdentifier;
@@ -109,7 +109,7 @@ open class SectionsPDMVVMViewModel: PDMVVMViewModel {
        
     }
     
-    internal func model(at indexPath: IndexPath?) -> Any? {
+    open func model(at indexPath: IndexPath?) -> Any? {
         if let indexPath = indexPath, let sectionInfo = self.sectionInfo(forSection: indexPath.section),
             let viewModels = sectionInfo.sectionViewModels {
             return viewModels[indexPath.row]
@@ -118,7 +118,7 @@ open class SectionsPDMVVMViewModel: PDMVVMViewModel {
         }
     }
     
-    func indexPath(for viewModel: PDMVVMViewModel?) -> IndexPath? {
+    open func indexPath(for viewModel: PDMVVMViewModel?) -> IndexPath? {
         var indexPath: IndexPath?
         
         for sectionInfo in sections {
@@ -139,7 +139,7 @@ open class SectionsPDMVVMViewModel: PDMVVMViewModel {
 }
 
 extension SectionsPDMVVMViewModel: PDMVVMViewModelDelegate {
-    public func viewModelUpdated(viewModel: PDMVVMViewModel) {
+    open func viewModelUpdated(viewModel: PDMVVMViewModel) {
         if let delegate = sectionsUpdatedDelegate, let indexPath = indexPath(for: viewModel) {
             delegate.viewModel(viewModel, didUpdateModel: viewModel.model, at: indexPath)
         }

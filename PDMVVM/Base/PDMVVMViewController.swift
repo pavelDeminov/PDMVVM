@@ -14,8 +14,7 @@ open class PDMVVMViewController: UIViewController {
     var fromCode = false
     private(set) var titleLabel: UILabel?
 
-    
-    class func create() -> Self {
+    open class func create() -> Self {
         let vc = self.init()
         vc.fromCode = true
         return vc
@@ -40,7 +39,7 @@ open class PDMVVMViewController: UIViewController {
         }
     }
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         if viewModel == nil {
@@ -51,7 +50,7 @@ open class PDMVVMViewController: UIViewController {
         
     }
     
-    func setupViewModel() {
+    open func setupViewModel() {
         var classString = NSStringFromClass(type(of: self)).components(separatedBy: ".").last
         classString = classString?.replacingOccurrences(of: "ViewController", with: "")
         var identifier = "\(classString ?? "")ViewModel"
@@ -71,30 +70,19 @@ open class PDMVVMViewController: UIViewController {
         
     }
     
-    internal func setup() {
+    open func setup() {
         
     }
     
-    internal func updateUI() {
+    open func updateUI() {
         self.titleLabel?.text = self.viewModel?.title
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
 extension PDMVVMViewController : PDMVVMViewModelDelegate {
     
-    @objc public  func viewModelUpdated(viewModel: PDMVVMViewModel) {
+    @objc open func viewModelUpdated(viewModel: PDMVVMViewModel) {
          updateUI()
     }
 }

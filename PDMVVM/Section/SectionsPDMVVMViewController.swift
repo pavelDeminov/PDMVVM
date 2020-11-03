@@ -10,20 +10,20 @@ import UIKit
 
 open class SectionsPDMVVMViewController: PDMVVMViewController {
     
-    internal var sectionsViewModel: SectionsPDMVVMViewModel? {
+    open var sectionsViewModel: SectionsPDMVVMViewModel? {
         get {
             return super.viewModel as? SectionsPDMVVMViewModel
         }
     }
     internal var reuseIdentifiersDict: [AnyHashable : Any] = [:]
     
-    internal func nibExists(name: String) -> Bool {
+    open func nibExists(name: String) -> Bool {
         let mainBundle = Bundle.main
         let path = mainBundle.path(forResource: name, ofType: "nib")
         return path != nil;
     }
     
-    internal func classExists(name: String) -> Bool {
+    open func classExists(name: String) -> Bool {
 
         var cls: AnyClass? = NSClassFromString(name)
         
