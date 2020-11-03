@@ -10,15 +10,15 @@ import UIKit
 
 open class CollectionPDMVVMViewController: SectionsPDMVVMViewController {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet open weak var collectionView: UICollectionView!
     
-    override var viewModel: PDMVVMViewModel? {
+    open override var viewModel: PDMVVMViewModel? {
         didSet {
             collectionViewModel?.sectionsUpdatedDelegate = self
             collectionViewModel?.viewModeldDelegate = self
         }
     }
-    public var collectionViewModel: CollectionPDMVVMViewModel? {
+    open var collectionViewModel: CollectionPDMVVMViewModel? {
         get {
             return viewModel as? CollectionPDMVVMViewModel
         }

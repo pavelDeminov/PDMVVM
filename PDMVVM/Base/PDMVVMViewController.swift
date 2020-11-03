@@ -10,8 +10,8 @@ import UIKit
 
 open class PDMVVMViewController: UIViewController {
     
-    var viewModel: PDMVVMViewModel?
-    var fromCode = false
+    open var viewModel: PDMVVMViewModel?
+    public var fromCode = false
     private(set) var titleLabel: UILabel?
 
     open class func create() -> Self {

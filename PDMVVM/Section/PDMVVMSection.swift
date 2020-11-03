@@ -10,7 +10,7 @@ import UIKit
 
 open class PDMVVMSection: NSObject {
     
-    var sectionViewModels: [CellPDMVVMViewModel]?
-    var viewModel: CellPDMVVMViewModel?
+    open var sectionViewModels: [CellPDMVVMViewModel]?
+    open var viewModel: CellPDMVVMViewModel?
     
 }
