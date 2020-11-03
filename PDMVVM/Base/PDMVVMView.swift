@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PDMVVMView: UIView {
+public class PDMVVMView: UIView {
 
     /*
     // Only override draw() if you perform custom drawing.

@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol PDMVVMSectionsViewModelDelegate {
+public protocol PDMVVMSectionsViewModelDelegate {
     func viewModel(_ viewModel: PDMVVMViewModel?, didDeleteModel model: Any?, at indexPath: IndexPath?, completion: @escaping (_ finished: Bool) -> Void)
 
     func viewModel(_ viewModel: PDMVVMViewModel?, didInsertModel model: Any?, at indexPath: IndexPath?, completion: @escaping (_ finished: Bool) -> Void)
@@ -34,7 +34,7 @@ protocol PDMVVMSectionsViewModelDelegate {
 
 }
 
-class SectionsPDMVVMViewModel: PDMVVMViewModel {
+public class SectionsPDMVVMViewModel: PDMVVMViewModel {
     
     var sectionsUpdatedDelegate: PDMVVMSectionsViewModelDelegate?
     
@@ -139,7 +139,7 @@ class SectionsPDMVVMViewModel: PDMVVMViewModel {
 }
 
 extension SectionsPDMVVMViewModel: PDMVVMViewModelDelegate {
-    func viewModelUpdated(viewModel: PDMVVMViewModel) {
+    public func viewModelUpdated(viewModel: PDMVVMViewModel) {
         if let delegate = sectionsUpdatedDelegate, let indexPath = indexPath(for: viewModel) {
             delegate.viewModel(viewModel, didUpdateModel: viewModel.model, at: indexPath)
         }

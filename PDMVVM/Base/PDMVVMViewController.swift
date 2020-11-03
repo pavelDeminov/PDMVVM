@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PDMVVMViewController: UIViewController {
+public class PDMVVMViewController: UIViewController {
     
     var viewModel: PDMVVMViewModel?
     var fromCode = false
@@ -21,7 +21,7 @@ class PDMVVMViewController: UIViewController {
         return vc
     }
     
-    override func loadView() {
+    public override func loadView() {
         if fromCode {
             let view = UIView()
             view.backgroundColor = UIColor.white
@@ -40,7 +40,7 @@ class PDMVVMViewController: UIViewController {
         }
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         if viewModel == nil {
@@ -94,7 +94,7 @@ class PDMVVMViewController: UIViewController {
 
 extension PDMVVMViewController : PDMVVMViewModelDelegate {
     
-    @objc func viewModelUpdated(viewModel: PDMVVMViewModel) {
+    @objc public  func viewModelUpdated(viewModel: PDMVVMViewModel) {
          updateUI()
     }
 }

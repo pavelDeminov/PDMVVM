@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PDMVVMCollectionReusableView: UICollectionReusableView {
+public class PDMVVMCollectionReusableView: UICollectionReusableView {
     
     var viewModel: PDMVVMViewModel? {
         didSet {
@@ -45,7 +45,7 @@ class PDMVVMCollectionReusableView: UICollectionReusableView {
        
     }
     
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
     }
     
@@ -54,7 +54,7 @@ class PDMVVMCollectionReusableView: UICollectionReusableView {
         
     }
     
-    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+    public override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         self.layoutIfNeeded()
         let attributes = super.preferredLayoutAttributesFitting(layoutAttributes)
         var frame = attributes.frame

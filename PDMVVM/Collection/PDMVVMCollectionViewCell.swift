@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PDMVVMCollectionViewCell: UICollectionViewCell {
+public class PDMVVMCollectionViewCell: UICollectionViewCell {
     
     var viewModel: PDMVVMViewModel? {
         didSet {
@@ -48,7 +48,7 @@ class PDMVVMCollectionViewCell: UICollectionViewCell {
        
     }
 
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
          super.awakeFromNib()
         setup()
         
@@ -64,7 +64,7 @@ class PDMVVMCollectionViewCell: UICollectionViewCell {
         
     }
     
-    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+    public override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         
         self.layoutIfNeeded()
         let attributes = super.preferredLayoutAttributesFitting(layoutAttributes)

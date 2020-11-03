@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SectionsPDMVVMViewController: PDMVVMViewController {
+public class SectionsPDMVVMViewController: PDMVVMViewController {
     
     internal var sectionsViewModel: SectionsPDMVVMViewModel? {
         get {

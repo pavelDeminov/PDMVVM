@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol PDMVVMModelUpdated {
+public protocol PDMVVMModelUpdated {
     func modelUpdated(model: Any)
 }
 
-class PDMVVMModel: NSObject  {
+public class PDMVVMModel: NSObject  {
     
     var updatedDelegate: PDMVVMModelUpdated?
     

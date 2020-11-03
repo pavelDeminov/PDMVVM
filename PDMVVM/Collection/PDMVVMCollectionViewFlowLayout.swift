@@ -8,10 +8,10 @@
 
 import UIKit
 
-class PDMVVMCollectionViewFlowLayout: UICollectionViewFlowLayout {
+public class PDMVVMCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     var viewModel: CollectionPDMVVMViewModel?
-    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    public override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         let superLayoutAttributes = super.layoutAttributesForElements(in: rect)
         
         if  let superLayoutAttributes = superLayoutAttributes, let layoutAttributes = NSArray(array: superLayoutAttributes, copyItems: true) as? [UICollectionViewLayoutAttributes] {
@@ -27,7 +27,7 @@ class PDMVVMCollectionViewFlowLayout: UICollectionViewFlowLayout {
         
     }
     
-    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    public override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         
         guard let layoutAttributes = super.layoutAttributesForItem(at: indexPath)
             else {
@@ -75,7 +75,7 @@ class PDMVVMCollectionViewFlowLayout: UICollectionViewFlowLayout {
         return rect;
     }
     
-    override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    public override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         
         guard let layoutAttributes = super.layoutAttributesForSupplementaryView(ofKind: elementKind, at: indexPath)?.copy() as? UICollectionViewLayoutAttributes
             else {

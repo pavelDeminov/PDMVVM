@@ -8,15 +8,15 @@
 
 import UIKit
 
-enum PDMVVMValidationState : Int {
+public enum PDMVVMValidationState : Int {
     case none
     case valid
     case invalid
 }
 
-typealias PDMVVMValidationBlock = (Any?, String?) -> Bool
+public typealias PDMVVMValidationBlock = (Any?, String?) -> Bool
 
-class PDMVVMRule: NSObject {
+public class PDMVVMRule: NSObject {
 
     var validationBlock: PDMVVMValidationBlock?
     var error = ""

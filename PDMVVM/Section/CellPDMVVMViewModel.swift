@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CellPDMVVMViewModel: PDMVVMViewModel {
+public class CellPDMVVMViewModel: PDMVVMViewModel {
     var reuseIdentifier: String!
     
     init(withModel model: Any?, withReuseidentifier reuseIdentifier: String) {
