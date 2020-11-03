@@ -75,7 +75,7 @@ open class PDMVVMViewController: UIViewController {
     }
     
     open func updateUI() {
-        self.titleLabel?.text = self.viewModel?.title
+
     }
 
 }

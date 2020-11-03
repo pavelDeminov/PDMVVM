@@ -22,19 +22,6 @@ open class PDMVVMViewModel: NSObject {
         }
     }
     open var viewModeldDelegate: PDMVVMViewModelDelegate?
-    open var title: String? {
-        get {
-            if let modelInfo = model as? PDMVVMModel {
-                if (modelInfo.mvvmTitle != nil) {
-                    return modelInfo.mvvmTitle
-                } else {
-                    return "Model with empty title"
-                }
-            } else {
-                return "Model hasn't found"
-            }
-        }
-    }
     
     class func viewModelsArray(fromArrayOfModels models: [Any]?) -> [PDMVVMViewModel]? {
         var array = [PDMVVMViewModel]()
