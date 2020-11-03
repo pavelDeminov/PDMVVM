@@ -169,28 +169,30 @@ extension CollectionPDMVVMViewController: UICollectionViewDelegateFlowLayout {
             let cellIdentifier = collectionViewModel.cellIdentifier(for: indexPath) else {
             return size
         }
-
-        if (collectionViewModel.automaticItemSize()) {
-
-            var identifier = cellIdentifier
-            var viewModelClass: AnyClass? = NSClassFromString(identifier)
-
-            if viewModelClass == nil {
-                //Not objc
-                let moduleName = NSStringFromClass(type(of: self)).components(separatedBy: ".").first
-                identifier = "\(moduleName ?? "").\(identifier)"
-                viewModelClass = NSClassFromString(identifier)
-            }
-
-            if let cls = viewModelClass as? PDMVVMCollectionViewCell.Type, let s = cls.minimalSelfSize()  {
-                size = s
-            }
-
-        } else if let mvvmLayout = collectionViewLayout as? PDMVVMCollectionViewFlowLayout    {
+        
+        if let mvvmLayout = collectionViewLayout as? PDMVVMCollectionViewFlowLayout {
+            
             size = collectionViewModel.sizeForItem(at: indexPath)
             let rect = CGRect(origin: CGPoint.zero, size: size)
             size = mvvmLayout.rectForItem(at: indexPath, original: rect).size
-            if (collectionViewModel.shouldHeightEqualWidth(indexPath)) {
+            
+            if (collectionViewModel.automaticItemSize()) {
+
+                var identifier = cellIdentifier
+                var viewModelClass: AnyClass? = NSClassFromString(identifier)
+
+                if viewModelClass == nil {
+                    //Not objc
+                    let moduleName = NSStringFromClass(type(of: self)).components(separatedBy: ".").first
+                    identifier = "\(moduleName ?? "").\(identifier)"
+                    viewModelClass = NSClassFromString(identifier)
+                }
+
+                if let cls = viewModelClass as? PDMVVMCollectionViewCell.Type, let s = cls.minimalSelfSize()  {
+                    size.height = s.height
+                }
+
+            } else if (collectionViewModel.shouldHeightEqualWidth(indexPath)) {
                 if (mvvmLayout.scrollDirection == .vertical) {
                     size.height = size.width
                 } else {
@@ -198,7 +200,7 @@ extension CollectionPDMVVMViewController: UICollectionViewDelegateFlowLayout {
                 }
             }
         }
-
+        
         return size
     }
  

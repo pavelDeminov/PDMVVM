@@ -16,6 +16,31 @@
                 <rect key="frame" x="0.0" y="0.0" width="383" height="115"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vtp-bv-CIW">
+                        <rect key="frame" x="-32" y="32" width="447" height="50"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Oik-Hz-3Sw">
+                                <rect key="frame" x="0.0" y="0.0" width="71.5" height="35.5"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qEU-CS-jnD">
+                                <rect key="frame" x="16" y="8" width="39.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.1960784314" green="0.25490196079999999" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Oik-Hz-3Sw" firstAttribute="leading" secondItem="Vtp-bv-CIW" secondAttribute="leading" id="Cxx-Fx-COB"/>
+                            <constraint firstItem="qEU-CS-jnD" firstAttribute="leading" secondItem="Vtp-bv-CIW" secondAttribute="leading" constant="16" id="H14-JZ-LOQ"/>
+                            <constraint firstAttribute="bottom" secondItem="qEU-CS-jnD" secondAttribute="bottom" constant="8" id="Jz8-mR-xXX"/>
+                            <constraint firstAttribute="trailing" secondItem="Oik-Hz-3Sw" secondAttribute="trailing" id="RRw-52-exE"/>
+                            <constraint firstAttribute="bottom" secondItem="Oik-Hz-3Sw" secondAttribute="bottom" id="VN0-ZB-ieu"/>
+                            <constraint firstItem="Oik-Hz-3Sw" firstAttribute="top" secondItem="Vtp-bv-CIW" secondAttribute="top" id="lYh-9T-AiN"/>
+                            <constraint firstAttribute="trailing" secondItem="qEU-CS-jnD" secondAttribute="trailing" constant="16" id="nhB-Y2-c65"/>
+                            <constraint firstItem="qEU-CS-jnD" firstAttribute="top" secondItem="Vtp-bv-CIW" secondAttribute="top" constant="8" id="zJ1-T4-QH8"/>
+                        </constraints>
+                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Bt-hP-onF">
                         <rect key="frame" x="0.0" y="0.0" width="383" height="115"/>
                         <subviews>

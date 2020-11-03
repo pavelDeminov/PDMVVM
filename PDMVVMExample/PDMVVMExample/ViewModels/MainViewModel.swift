@@ -15,7 +15,7 @@ class MainViewModel: CollectionPDMVVMViewModel {
         var sections = [PDMVVMSection]()
         
         var section = PDMVVMSection()
-        section.viewModel = CellPDMVVMViewModel(withModel:PDMVVMModel(withTitle:"Section 1" ), withReuseidentifier: "MainReusableView")
+        //section.viewModel = CellPDMVVMViewModel(withModel:PDMVVMModel(withTitle:"Section 1" ), withReuseidentifier: "MainReusableView")
         
         var viewModels = [CellPDMVVMViewModel]()
         
@@ -53,7 +53,7 @@ class MainViewModel: CollectionPDMVVMViewModel {
         
         
         section = PDMVVMSection()
-        section.viewModel = CellPDMVVMViewModel(withModel:PDMVVMModel(withTitle:"Section 2" ), withReuseidentifier: "MainReusableView")
+        //section.viewModel = CellPDMVVMViewModel(withModel:PDMVVMModel(withTitle:"Section 2" ), withReuseidentifier: "MainReusableView")
         
         viewModels = [CellPDMVVMViewModel]()
         
@@ -88,20 +88,20 @@ class MainViewModel: CollectionPDMVVMViewModel {
     }
     
     override func automaticItemSize() -> Bool {
-           return true
+           return false
     }
     
     override func sizeForItem(at indexPath: IndexPath?) -> CGSize {
            return CGSize(width: 100, height: 300)
     }
-//    
+    
     override func sizeForHeader(inSection section: Int) -> CGSize {
         return CGSize(width: 100, height: 100)
     }
-//
-//    override func shouldHeightEqualWidth(_ indexPath: IndexPath?) -> Bool {
-//        return true
-//    }
+
+    override func shouldHeightEqualWidth(_ indexPath: IndexPath?) -> Bool {
+        return true
+    }
     
     override func scrollDirection() -> UICollectionView.ScrollDirection {
          return .vertical
