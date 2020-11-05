@@ -15,7 +15,7 @@ open class PDMVVMCollectionViewCell: UICollectionViewCell {
             updateUI()
         }
     }
-    @IBOutlet private(set) weak var plateView: UIView!
+    @IBOutlet public weak var plateView: UIView!
     
     open var scrollDirection: UICollectionView.ScrollDirection = .vertical
     

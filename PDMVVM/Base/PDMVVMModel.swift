@@ -14,21 +14,21 @@ public protocol PDMVVMModelUpdated {
 
 open class PDMVVMModel: NSObject  {
     
-    var updatedDelegate: PDMVVMModelUpdated?
+    open var updatedDelegate: PDMVVMModelUpdated?
     
-    var mvvmTitle: String?
-    var mvvmApiKey: String?
-    var mvvmImageName: String?
-    var mask: String?
-    var mvvmAPIError:String?
-    var mvvmPlaceholder: String?
-    var mvvmDate: Date?
-    var mvvmValue: Any?
-    var mvvmObject: Any?
+    open var mvvmTitle: String?
+    open var mvvmApiKey: String?
+    open var mvvmImageName: String?
+    open var mask: String?
+    open var mvvmAPIError:String?
+    open var mvvmPlaceholder: String?
+    open var mvvmDate: Date?
+    open var mvvmValue: Any?
+    open var mvvmObject: Any?
     
-    var mvvmImage: UIImage?
-    var mvvmImageUrl: URL?
-    var mvvmError: String? {
+    open var mvvmImage: UIImage?
+    open var mvvmImageUrl: URL?
+    open var mvvmError: String? {
         get {
             if (errorRule?.error != nil) {
                 return errorRule?.error
@@ -40,30 +40,30 @@ open class PDMVVMModel: NSObject  {
         }
     }
     
-    var type: Int = 0
+    open var type: Int = 0
     
-    var checkers: [Any]?
-    var errorRule: PDMVVMRule?
-    var rules: [PDMVVMRule]?
+    open var checkers: [Any]?
+    open var errorRule: PDMVVMRule?
+    open var rules: [PDMVVMRule]?
     
-    init(withTitle title: String?) {
+    public init(withTitle title: String?) {
         super.init()
         mvvmTitle = title
     }
     
-    init(withTitle title: String?, image: UIImage?) {
+    public init(withTitle title: String?, image: UIImage?) {
         super.init()
         mvvmTitle = title
         mvvmImage = image
     }
     
-    init(withTitle title: String?, value: Any?) {
+    public init(withTitle title: String?, value: Any?) {
         super.init()
         mvvmTitle = title
         mvvmValue = value
     }
     
-    init(withTitle title: String?, value: Any?, error: String?){
+    public init(withTitle title: String?, value: Any?, error: String?){
         super.init()
         mvvmTitle = title
         mvvmValue = value
