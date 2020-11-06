@@ -143,7 +143,7 @@ open class SectionsPDMVVMViewModel: PDMVVMViewModel {
 }
 
 extension SectionsPDMVVMViewModel: PDMVVMViewModelDelegate {
-    open func viewModelUpdated(viewModel: PDMVVMViewModel) {
+    @objc open func viewModelUpdated(viewModel: PDMVVMViewModel) {
         if let delegate = sectionsUpdatedDelegate, let indexPath = indexPath(for: viewModel) {
             delegate.viewModel(viewModel, didUpdateModel: viewModel.model, at: indexPath)
         }
