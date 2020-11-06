@@ -271,6 +271,7 @@ extension CollectionPDMVVMViewController : PDMVVMSectionsViewModelDelegate {
                 
             }
         }
+        updateUI()
     }
 
     @objc open func viewModel(_ viewModel: PDMVVMViewModel?, didInsertModel model: Any?, at indexPath: IndexPath?, completion: @escaping (_ finished: Bool) -> Void) {
@@ -281,6 +282,7 @@ extension CollectionPDMVVMViewController : PDMVVMSectionsViewModelDelegate {
                        
             }
         }
+        updateUI()
     }
 
     @objc open func viewModel(_ viewModel: PDMVVMViewModel?, didUpdateModel model: Any?, at indexPath: IndexPath?) {
@@ -289,6 +291,7 @@ extension CollectionPDMVVMViewController : PDMVVMSectionsViewModelDelegate {
             collectionView.collectionViewLayout.invalidateLayout()
             cell.updateUI()
         }
+        updateUI()
     }
 
     @objc open func viewModelsUpdated(atIndexPaths indexPaths: [IndexPath]?) {
@@ -297,13 +300,14 @@ extension CollectionPDMVVMViewController : PDMVVMSectionsViewModelDelegate {
                 collectionView.reloadItems(at: indexPaths)
             }, completion: nil)
         }
-        
+        updateUI()
     }
     
     @objc open func sectionReloadSections(_ indexSet: IndexSet?) {
         if let indexSet = indexSet {
             collectionView.reloadSections(indexSet)
         }
+        updateUI()
     }
 
     @objc open func sectionViewModelDidInsertSections(at indexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void) {
@@ -313,6 +317,7 @@ extension CollectionPDMVVMViewController : PDMVVMSectionsViewModelDelegate {
                 collectionView.insertSections(indexSet)
             }, completion: completion)
         }
+        updateUI()
     }
 
     @objc open func sectionViewModelDidDeleteSections(at indexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void) {
@@ -321,6 +326,7 @@ extension CollectionPDMVVMViewController : PDMVVMSectionsViewModelDelegate {
                 collectionView.deleteSections(indexSet)
             }, completion: completion)
         }
+        updateUI()
     }
 
     @objc open func sectionReloadSections(_ indexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void) {
@@ -329,6 +335,7 @@ extension CollectionPDMVVMViewController : PDMVVMSectionsViewModelDelegate {
                 collectionView.reloadSections(indexSet)
             }, completion: completion)
         }
+        updateUI()
     }
 
     @objc open func sectionViewModelDidInsertSections(at insertedIndexSet: IndexSet?, deleteSectionsAt deletedindexSet: IndexSet?, reloadSectionsAt reloadedIndexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void) {
@@ -340,5 +347,6 @@ extension CollectionPDMVVMViewController : PDMVVMSectionsViewModelDelegate {
                 collectionView.reloadSections(reloadedIndexSet)
             }, completion: completion)
         }
+        updateUI()
     }
 }
