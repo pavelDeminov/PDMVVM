@@ -36,7 +36,7 @@ public protocol PDMVVMSectionsViewModelDelegate {
 
 open class SectionsPDMVVMViewModel: PDMVVMViewModel {
     
-    var sectionsUpdatedDelegate: PDMVVMSectionsViewModelDelegate?
+    public var sectionsUpdatedDelegate: PDMVVMSectionsViewModelDelegate?
     
     open func automaticItemSize() -> Bool {
         return true
