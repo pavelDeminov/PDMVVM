@@ -121,17 +121,21 @@ open class SectionsPDMVVMViewModel: PDMVVMViewModel {
     open func indexPath(for viewModel: PDMVVMViewModel?) -> IndexPath? {
         var indexPath: IndexPath?
         
-        for sectionInfo in sections {
-            if let viewModels = sectionInfo.sectionViewModels {
-                for viewModel in viewModels {
-                    if let section = sections.firstIndex(where: { (info) -> Bool in
-                        return info == sectionInfo
-                    }), let row = viewModels.firstIndex(of: viewModel) {
-                         indexPath = IndexPath(row: row, section: section)
+        for  s in 0..<sections.count {
+            let section = sections[s]
+            if let viewModels = section.sectionViewModels {
+                for r in 0..<viewModels.count {
+                    let vm = viewModels[r]
+                    if viewModel == vm {
+                        indexPath = IndexPath(row: r, section: s)
+                        break
                     }
-                   
                 }
             }
+            if indexPath != nil {
+                break
+            }
+            
         }
         return indexPath
     }
