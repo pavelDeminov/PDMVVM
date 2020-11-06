@@ -27,13 +27,13 @@ open class PDMVVMViewModel: NSObject {
     
     public var rules = [PDMVVMRule]()
     
-    public func validate() {
+    open func validate() {
         for rule in rules {
             rule.validate(model)
         }
     }
     
-    public func invalidate() {
+    open func invalidate() {
            for rule in rules {
                rule.invalidate()
            }
