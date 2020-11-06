@@ -256,13 +256,13 @@ extension CollectionPDMVVMViewController: UICollectionViewDelegateFlowLayout {
 
 extension CollectionPDMVVMViewController : PDMVVMSectionsViewModelDelegate {
     
-    open override func viewModelUpdated(viewModel: PDMVVMViewModel) {
+    @objc open override func viewModelUpdated(viewModel: PDMVVMViewModel) {
         super.viewModelUpdated(viewModel: viewModel)
         collectionView.reloadData()
         updateUI()
     }
     
-    open func viewModel(_ viewModel: PDMVVMViewModel?, didDeleteModel model: Any?, at indexPath: IndexPath?, completion: @escaping (_ finished: Bool) -> Void) {
+    @objc open func viewModel(_ viewModel: PDMVVMViewModel?, didDeleteModel model: Any?, at indexPath: IndexPath?, completion: @escaping (_ finished: Bool) -> Void) {
         
         if let indexPath = indexPath {
             collectionView.performBatchUpdates({
@@ -273,7 +273,7 @@ extension CollectionPDMVVMViewController : PDMVVMSectionsViewModelDelegate {
         }
     }
 
-    open func viewModel(_ viewModel: PDMVVMViewModel?, didInsertModel model: Any?, at indexPath: IndexPath?, completion: @escaping (_ finished: Bool) -> Void) {
+    @objc open func viewModel(_ viewModel: PDMVVMViewModel?, didInsertModel model: Any?, at indexPath: IndexPath?, completion: @escaping (_ finished: Bool) -> Void) {
         if let indexPath = indexPath {
             collectionView.performBatchUpdates({
                 collectionView.insertItems(at: [indexPath])
@@ -283,7 +283,7 @@ extension CollectionPDMVVMViewController : PDMVVMSectionsViewModelDelegate {
         }
     }
 
-    open func viewModel(_ viewModel: PDMVVMViewModel?, didUpdateModel model: Any?, at indexPath: IndexPath?) {
+    @objc open func viewModel(_ viewModel: PDMVVMViewModel?, didUpdateModel model: Any?, at indexPath: IndexPath?) {
         
         if let indexPath = indexPath, let cell = collectionView.cellForItem(at: indexPath) as? PDMVVMCollectionViewCell {
             collectionView.collectionViewLayout.invalidateLayout()
@@ -291,20 +291,22 @@ extension CollectionPDMVVMViewController : PDMVVMSectionsViewModelDelegate {
         }
     }
 
-    open func viewModelsUpdated(atIndexPaths indexPaths: [IndexPath]?) {
+    @objc open func viewModelsUpdated(atIndexPaths indexPaths: [IndexPath]?) {
         if let indexPaths = indexPaths {
-            collectionView.reloadItems(at: indexPaths)
+            collectionView.performBatchUpdates({
+                collectionView.reloadItems(at: indexPaths)
+            }, completion: nil)
         }
         
     }
     
-    open func sectionReloadSections(_ indexSet: IndexSet?) {
+    @objc open func sectionReloadSections(_ indexSet: IndexSet?) {
         if let indexSet = indexSet {
             collectionView.reloadSections(indexSet)
         }
     }
 
-    open func sectionViewModelDidInsertSections(at indexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void) {
+    @objc open func sectionViewModelDidInsertSections(at indexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void) {
         
         if let indexSet = indexSet {
             collectionView.performBatchUpdates({
@@ -313,7 +315,7 @@ extension CollectionPDMVVMViewController : PDMVVMSectionsViewModelDelegate {
         }
     }
 
-    open func sectionViewModelDidDeleteSections(at indexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void) {
+    @objc open func sectionViewModelDidDeleteSections(at indexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void) {
         if let indexSet = indexSet {
             collectionView.performBatchUpdates({
                 collectionView.deleteSections(indexSet)
@@ -321,7 +323,7 @@ extension CollectionPDMVVMViewController : PDMVVMSectionsViewModelDelegate {
         }
     }
 
-    open func sectionReloadSections(_ indexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void) {
+    @objc open func sectionReloadSections(_ indexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void) {
         if let indexSet = indexSet {
             collectionView.performBatchUpdates({
                 collectionView.reloadSections(indexSet)
@@ -329,7 +331,7 @@ extension CollectionPDMVVMViewController : PDMVVMSectionsViewModelDelegate {
         }
     }
 
-    open func sectionViewModelDidInsertSections(at insertedIndexSet: IndexSet?, deleteSectionsAt deletedindexSet: IndexSet?, reloadSectionsAt reloadedIndexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void) {
+    @objc open func sectionViewModelDidInsertSections(at insertedIndexSet: IndexSet?, deleteSectionsAt deletedindexSet: IndexSet?, reloadSectionsAt reloadedIndexSet: IndexSet?, completion: @escaping (_ finished: Bool) -> Void) {
         
         if let insertedIndexSet = insertedIndexSet,let deletedindexSet = deletedindexSet, let reloadedIndexSet = reloadedIndexSet {
             collectionView.performBatchUpdates({
