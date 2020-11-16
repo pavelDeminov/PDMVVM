@@ -10,6 +10,10 @@ import UIKit
 
 open class PDMVVMCollectionViewCell: UICollectionViewCell {
     
+    var beginEditingHandler: ((PDMVVMCollectionViewCell) -> ())?
+    var endEditingHandler: ((PDMVVMCollectionViewCell) -> ())?
+    var valueChangedHandler: ((PDMVVMCollectionViewCell) -> ())?
+    
     public var viewModel: PDMVVMViewModel? {
         didSet {
             updateUI()
@@ -18,6 +22,7 @@ open class PDMVVMCollectionViewCell: UICollectionViewCell {
     @IBOutlet public weak var plateView: UIView!
     
     open var scrollDirection: UICollectionView.ScrollDirection = .vertical
+    public static var useViewModelForCalculateMinimalSize = false
     
     class var reuseIdentifier: String? {
         let classString = NSStringFromClass(self.self).components(separatedBy: ".").last
@@ -38,6 +43,23 @@ open class PDMVVMCollectionViewCell: UICollectionViewCell {
             prototype?.contentView.autoresizingMask = UIView.AutoresizingMask(rawValue: UIView.AutoresizingMask.flexibleWidth.rawValue)
             
             prototype?.viewModel = nil;
+            prototype?.layoutSubviews()
+            let size = prototype?.contentView.systemLayoutSizeFitting(layoutFittingCompressedSize)
+            minimalSafeSizesCollection?[reuseIdentifier] = size
+            return size;
+        }
+       
+    }
+    
+    open class func minimalSelfSizeWithViewModel(viewModel: PDMVVMViewModel) -> CGSize? {
+        
+        if let size = minimalSafeSizesCollection?[reuseIdentifier] as? CGSize {
+            return size
+        } else {
+            let prototype = (Bundle.main.loadNibNamed(self.reuseIdentifier ?? "", owner: nil, options: nil))?[0] as? PDMVVMCollectionViewCell
+            prototype?.contentView.autoresizingMask = UIView.AutoresizingMask(rawValue: UIView.AutoresizingMask.flexibleWidth.rawValue)
+            
+            prototype?.viewModel = viewModel;
             prototype?.layoutSubviews()
             let size = prototype?.contentView.systemLayoutSizeFitting(layoutFittingCompressedSize)
             minimalSafeSizesCollection?[reuseIdentifier] = size

@@ -188,8 +188,19 @@ extension CollectionPDMVVMViewController: UICollectionViewDelegateFlowLayout {
                     viewModelClass = NSClassFromString(identifier)
                 }
 
-                if let cls = viewModelClass as? PDMVVMCollectionViewCell.Type, let s = cls.minimalSelfSize()  {
-                    size.height = s.height
+                if let cls = viewModelClass as? PDMVVMCollectionViewCell.Type  {
+                    let sizeWithViewModel = cls.useViewModelForCalculateMinimalSize
+                    
+                    if sizeWithViewModel {
+                        if let viewModel = collectionViewModel.viewModel(at: indexPath), let s = cls.minimalSelfSizeWithViewModel(viewModel: viewModel) {
+                            size.height = s.height
+                        }
+                        
+                    } else {
+                        if let s = cls.minimalSelfSize() {
+                            size.height = s.height
+                        }
+                    }
                 }
 
             } else if (collectionViewModel.shouldHeightEqualWidth(indexPath)) {
