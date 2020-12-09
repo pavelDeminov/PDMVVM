@@ -19,7 +19,7 @@ public typealias PDMVVMValidationBlock = (Any?, String?) -> Bool
 open class PDMVVMRule: NSObject {
 
     public var validationBlock: PDMVVMValidationBlock?
-    public var error = ""
+    public var error: String?
     public var state: PDMVVMValidationState?
     
     open func validate(_ value: Any?) {

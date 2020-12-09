@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		95220A742563B02500E26CDE /* PDMVVMScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95220A712563B02400E26CDE /* PDMVVMScrollView.swift */; };
+		95220A752563B02500E26CDE /* ScrollViewPDMVVMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95220A722563B02400E26CDE /* ScrollViewPDMVVMViewController.swift */; };
+		95220A762563B02500E26CDE /* ScrollViewPDMVVMViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95220A732563B02400E26CDE /* ScrollViewPDMVVMViewModel.swift */; };
 		952EF9092553E7F700BE55B5 /* PDMVVMModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952EF9072553E7F700BE55B5 /* PDMVVMModel.swift */; };
 		952EF90A2553E7F700BE55B5 /* PDMVVMRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952EF9082553E7F700BE55B5 /* PDMVVMRule.swift */; };
 		958E88572550321800DE5C0E /* CellPDMVVMViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958E88562550321700DE5C0E /* CellPDMVVMViewModel.swift */; };
@@ -38,6 +41,9 @@
 /* Begin PBXFileReference section */
 		8801B334E5CF30971F9847E9 /* Pods_PDMVVMExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PDMVVMExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E2805F375C403DE80E24A28 /* Pods-PDMVVMExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PDMVVMExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-PDMVVMExample/Pods-PDMVVMExample.release.xcconfig"; sourceTree = "<group>"; };
+		95220A712563B02400E26CDE /* PDMVVMScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDMVVMScrollView.swift; sourceTree = "<group>"; };
+		95220A722563B02400E26CDE /* ScrollViewPDMVVMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewPDMVVMViewController.swift; sourceTree = "<group>"; };
+		95220A732563B02400E26CDE /* ScrollViewPDMVVMViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewPDMVVMViewModel.swift; sourceTree = "<group>"; };
 		952EF9072553E7F700BE55B5 /* PDMVVMModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDMVVMModel.swift; sourceTree = "<group>"; };
 		952EF9082553E7F700BE55B5 /* PDMVVMRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDMVVMRule.swift; sourceTree = "<group>"; };
 		958E88562550321700DE5C0E /* CellPDMVVMViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellPDMVVMViewModel.swift; sourceTree = "<group>"; };
@@ -88,6 +94,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		95220A702563B02400E26CDE /* ScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				95220A712563B02400E26CDE /* PDMVVMScrollView.swift */,
+				95220A722563B02400E26CDE /* ScrollViewPDMVVMViewController.swift */,
+				95220A732563B02400E26CDE /* ScrollViewPDMVVMViewModel.swift */,
+			);
+			path = ScrollView;
+			sourceTree = "<group>";
+		};
 		958E885325502FFA00DE5C0E /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +145,7 @@
 				958E885325502FFA00DE5C0E /* Base */,
 				958E88542550302600DE5C0E /* Section */,
 				958E88552550305D00DE5C0E /* Collection */,
+				95220A702563B02400E26CDE /* ScrollView */,
 			);
 			name = PDMVVM;
 			path = ../../PDMVVM;
@@ -249,7 +266,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = "Pavel Deminov";
 				TargetAttributes = {
 					95EA183E2205FF9C00E7FEDB = {
@@ -318,11 +335,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				95EA18452205FF9C00E7FEDB /* HomeViewController.swift in Sources */,
+				95220A762563B02500E26CDE /* ScrollViewPDMVVMViewModel.swift in Sources */,
 				95EAEE94220B7F3800019A8B /* MainViewModel.swift in Sources */,
 				95C2E063251221EE002E3108 /* PDMVVMViewController.swift in Sources */,
 				95EA18432205FF9C00E7FEDB /* AppDelegate.swift in Sources */,
 				95C2E064251221EE002E3108 /* CollectionPDMVVMViewController.swift in Sources */,
 				952EF90A2553E7F700BE55B5 /* PDMVVMRule.swift in Sources */,
+				95220A752563B02500E26CDE /* ScrollViewPDMVVMViewController.swift in Sources */,
 				95C2E06E2512235B002E3108 /* PDMVVMCollectionReusableView.swift in Sources */,
 				95EAEE91220B7EDD00019A8B /* MainViewController.swift in Sources */,
 				95C2E06F2512235B002E3108 /* PDMVVMCollectionViewCell.swift in Sources */,
@@ -336,6 +355,7 @@
 				95C2E060251221EE002E3108 /* PDMVVMSection.swift in Sources */,
 				958E88572550321800DE5C0E /* CellPDMVVMViewModel.swift in Sources */,
 				95EAEE99220CD53300019A8B /* MainCell.swift in Sources */,
+				95220A742563B02500E26CDE /* PDMVVMScrollView.swift in Sources */,
 				952EF9092553E7F700BE55B5 /* PDMVVMModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,6 +408,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -449,6 +470,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

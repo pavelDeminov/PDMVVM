@@ -10,10 +10,6 @@ import UIKit
 
 open class PDMVVMCollectionViewCell: UICollectionViewCell {
     
-    var beginEditingHandler: ((PDMVVMCollectionViewCell) -> ())?
-    var endEditingHandler: ((PDMVVMCollectionViewCell) -> ())?
-    var valueChangedHandler: ((PDMVVMCollectionViewCell) -> ())?
-    
     public var viewModel: PDMVVMViewModel? {
         didSet {
             updateUI()

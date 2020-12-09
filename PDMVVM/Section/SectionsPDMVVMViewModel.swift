@@ -112,7 +112,7 @@ open class SectionsPDMVVMViewModel: PDMVVMViewModel {
     open func model(at indexPath: IndexPath?) -> Any? {
         if let indexPath = indexPath, let sectionInfo = self.sectionInfo(forSection: indexPath.section),
             let viewModels = sectionInfo.sectionViewModels {
-            return viewModels[indexPath.row]
+            return viewModels[indexPath.row].model
         } else {
             return nil
         }

@@ -14,29 +14,27 @@ public protocol PDMVVMViewModelDelegate {
 
 open class PDMVVMViewModel: NSObject {
     
-    public var error: String? {
-        get {
-            for rule in rules {
-                if rule.state == .invalid {
-                    return rule.error
-                }
-            }
-            return nil
-        }
-    }
+    open var error: String?
     
     public var rules = [PDMVVMRule]()
     
     open func validate() {
+        var firstError: String?
+        
         for rule in rules {
             rule.validate(model)
+            if firstError == nil && rule.error != nil {
+                firstError = rule.error
+            }
         }
+        error = firstError
     }
     
     open func invalidate() {
-           for rule in rules {
-               rule.invalidate()
-           }
+        error = nil
+        for rule in rules {
+            rule.invalidate()
+        }
     }
     
     open var model: Any? {
