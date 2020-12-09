@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ScrollViewPDMVVMViewModel: SectionsPDMVVMViewModel {
+open class ScrollViewPDMVVMViewModel: SectionsPDMVVMViewModel {
     
     open func scrollDirection() -> UICollectionView.ScrollDirection {
         return .vertical

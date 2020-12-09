@@ -8,13 +8,13 @@
 
 import UIKit
 
-class PDMVVMScrollView: UIView {
+open class PDMVVMScrollView: UIView {
     
-    var beginEditingHandler: ((PDMVVMScrollView) -> ())?
-    var endEditingHandler: ((PDMVVMScrollView) -> ())?
-    var valueChangedHandler: ((PDMVVMScrollView) -> ())?
+    open var beginEditingHandler: ((PDMVVMScrollView) -> ())?
+    open var endEditingHandler: ((PDMVVMScrollView) -> ())?
+    open var valueChangedHandler: ((PDMVVMScrollView) -> ())?
     
-     public var viewModel: PDMVVMViewModel? {
+    public var viewModel: PDMVVMViewModel? {
         didSet {
             updateUI()
         }

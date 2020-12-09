@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ScrollViewPDMVVMViewController: SectionsPDMVVMViewController {
+open class ScrollViewPDMVVMViewController: SectionsPDMVVMViewController {
     
     @IBOutlet open weak var scrollView: UIScrollView!
     
@@ -27,12 +27,12 @@ class ScrollViewPDMVVMViewController: SectionsPDMVVMViewController {
     
     private var cellIndexPathDict = [IndexPath:PDMVVMScrollView]()
     
-    override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
     
-    override func setup() {
+    open override func setup() {
         
         for view in scrollView.subviews {
             view.removeFromSuperview()
