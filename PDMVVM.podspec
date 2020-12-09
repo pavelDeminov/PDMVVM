@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "PDMVVM"
-  s.version      = "0.2.7"
+  s.version      = "0.2.8"
   s.platform = :ios
 
   s.swift_versions = "5.0"
@@ -29,6 +29,13 @@ Pod::Spec.new do |s|
     	collection.source_files = "PDMVVM/Collection/**/*.swift"
 	collection.dependency 'PDMVVM/Section'
   end
+  
+  s.subspec "ScrollView" do | scrollView |
+    	scrollView.source_files = "PDMVVM/ScrollView/**/*.swift"
+	scrollView.dependency 'PDMVVM/Section'
+  end
+
+
 
 
 end
