@@ -23,7 +23,7 @@ open class PDMVVMViewModel: NSObject {
         
         for rule in rules {
             rule.validate(model)
-            if firstError == nil && rule.error != nil {
+            if let state = rule.state, state == .invalid, firstError == nil {
                 firstError = rule.error
             }
         }
