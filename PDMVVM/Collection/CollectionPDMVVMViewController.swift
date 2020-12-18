@@ -99,16 +99,23 @@ extension CollectionPDMVVMViewController: UICollectionViewDataSource, UICollecti
         if reuseIdentifiersDict[cellIdentifier] == nil {
             reuseIdentifiersDict[cellIdentifier] = cellIdentifier
             
-            
-            if nibExists(name: cellIdentifier) {
-                collectionView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
+            let isCollectionClass = classFrom(name: cellIdentifier) as? PDMVVMCollectionViewCell.Type
+            if  isCollectionClass != nil {
+                if nibExists(name: cellIdentifier) {
+                    collectionView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
+                } else {
+                    collectionView.register(NSClassFromString(cellIdentifier), forCellWithReuseIdentifier: cellIdentifier)
+                }
             } else {
-                collectionView.register(NSClassFromString(cellIdentifier), forCellWithReuseIdentifier: cellIdentifier)
+                collectionView.register(PDMVVMCollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
             }
-            
         }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? PDMVVMCollectionViewCell
+        
+        if let cell = cell, cell.plateView == nil && cell.pdmvvmView == nil, let view = (Bundle.main.loadNibNamed(cellIdentifier, owner: nil, options: nil))?.first as? PDMVVMView {
+            cell.pdmvvmView = view
+        }
         
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             cell?.scrollDirection = layout.scrollDirection
@@ -116,6 +123,7 @@ extension CollectionPDMVVMViewController: UICollectionViewDataSource, UICollecti
         
         if viewModel != nil {
             cell?.viewModel = viewModel
+            cell?.pdmvvmView?.viewModel = viewModel
         }
 
         prepare(cell, for: indexPath)
@@ -126,7 +134,7 @@ extension CollectionPDMVVMViewController: UICollectionViewDataSource, UICollecti
     
     open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 
-        guard let headerIdentifier = sectionsViewModel?.headerIdentifier(forSection: indexPath.section), classExists(name: headerIdentifier) else {
+        guard let headerIdentifier = sectionsViewModel?.headerIdentifier(forSection: indexPath.section), let _ = classFrom(name: headerIdentifier) else {
             return UICollectionReusableView(frame: CGRect.zero)
         }
 
@@ -178,17 +186,20 @@ extension CollectionPDMVVMViewController: UICollectionViewDelegateFlowLayout {
             
             if (collectionViewModel.automaticItemSize()) {
 
-                var identifier = cellIdentifier
-                var viewModelClass: AnyClass? = NSClassFromString(identifier)
-
-                if viewModelClass == nil {
-                    //Not objc
-                    let moduleName = NSStringFromClass(type(of: self)).components(separatedBy: ".").first
-                    identifier = "\(moduleName ?? "").\(identifier)"
-                    viewModelClass = NSClassFromString(identifier)
-                }
-
-                if let cls = viewModelClass as? PDMVVMCollectionViewCell.Type  {
+                if let cls = classFrom(name: cellIdentifier) as? PDMVVMCollectionViewCell.Type  {
+                    let sizeWithViewModel = cls.useViewModelForCalculateMinimalSize
+                    
+                    if sizeWithViewModel {
+                        if let viewModel = collectionViewModel.viewModel(at: indexPath), let s = cls.minimalSelfSizeWithViewModel(viewModel: viewModel) {
+                            size.height = s.height
+                        }
+                        
+                    } else {
+                        if let s = cls.minimalSelfSize() {
+                            size.height = s.height
+                        }
+                    }
+                } else if let cls = classFrom(name: cellIdentifier) as? PDMVVMView.Type  {
                     let sizeWithViewModel = cls.useViewModelForCalculateMinimalSize
                     
                     if sizeWithViewModel {
@@ -219,25 +230,14 @@ extension CollectionPDMVVMViewController: UICollectionViewDelegateFlowLayout {
         
         var size = CGSize.zero
         guard let collectionViewModel = collectionViewModel,
-            let cellIdentifier = collectionViewModel.headerIdentifier(forSection: section),
-            classExists(name: cellIdentifier) else {
+            let cellIdentifier = collectionViewModel.headerIdentifier(forSection: section), let cls = classFrom(name: cellIdentifier) else {
             return size
         }
         size = CGSize(width: 50, height: 50)
 
         if (collectionViewModel.automaticItemSize()) {
             
-            var identifier = cellIdentifier
-            var viewModelClass: AnyClass? = NSClassFromString(identifier)
-            
-            if viewModelClass == nil {
-                //Not objc
-                let moduleName = NSStringFromClass(type(of: self)).components(separatedBy: ".").first
-                identifier = "\(moduleName ?? "").\(identifier)"
-                viewModelClass = NSClassFromString(identifier)
-            }
-            
-            if let cls = viewModelClass as? PDMVVMCollectionReusableView.Type, let s = cls.minimalSelfSize()  {
+            if let cls = cls as? PDMVVMCollectionReusableView.Type, let s = cls.minimalSelfSize()  {
                 size = s
             }
             

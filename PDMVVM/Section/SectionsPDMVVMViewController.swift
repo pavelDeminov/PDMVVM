@@ -23,7 +23,7 @@ open class SectionsPDMVVMViewController: PDMVVMViewController {
         return path != nil;
     }
     
-    open func classExists(name: String) -> Bool {
+    open func classFrom(name: String) -> AnyClass? {
 
         var cls: AnyClass? = NSClassFromString(name)
         
@@ -34,7 +34,7 @@ open class SectionsPDMVVMViewController: PDMVVMViewController {
             cls = NSClassFromString(identifier)
         }
         
-        return cls != nil
+        return cls
     }
     
 }

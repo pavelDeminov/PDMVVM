@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dmW-Ao-9Aa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dmW-Ao-9Aa">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,45 +17,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="rzi-Fa-9Pr" kind="relationship" relationship="rootViewController" id="Hyq-Fc-Qxb"/>
+                        <segue destination="11z-W6-ojq" kind="relationship" relationship="rootViewController" id="iW5-88-vfl"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DL1-1X-dzk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-358" y="153"/>
-        </scene>
-        <!--Home View Controller-->
-        <scene sceneID="2gM-K8-KHQ">
-            <objects>
-                <viewController id="rzi-Fa-9Pr" customClass="HomeViewController" customModule="PDMVVMExample" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="rNt-Xb-mlF"/>
-                        <viewControllerLayoutGuide type="bottom" id="vo3-dg-eY6"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="bZw-Bg-Wib">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h19-LJ-VV8">
-                                <rect key="frame" x="156" y="309.5" width="63" height="48"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="Start"/>
-                                <connections>
-                                    <segue destination="11z-W6-ojq" kind="show" id="nlx-JV-1Jf"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="h19-LJ-VV8" firstAttribute="centerY" secondItem="bZw-Bg-Wib" secondAttribute="centerY" id="9le-Gp-ErJ"/>
-                            <constraint firstItem="h19-LJ-VV8" firstAttribute="centerX" secondItem="bZw-Bg-Wib" secondAttribute="centerX" id="WL4-YH-kbW"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="mFy-k6-aHj"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ayg-d3-x2h" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="543" y="155"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="J8F-DF-UlP">
@@ -78,6 +45,7 @@
                                 <cells/>
                             </collectionView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="PiO-xu-srz"/>
                         <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="PiO-xu-srz" firstAttribute="trailing" secondItem="hbh-hB-eJM" secondAttribute="trailing" id="7Fc-lc-UA2"/>
@@ -85,7 +53,6 @@
                             <constraint firstItem="PiO-xu-srz" firstAttribute="bottom" secondItem="hbh-hB-eJM" secondAttribute="bottom" id="WRm-cr-v0y"/>
                             <constraint firstItem="hbh-hB-eJM" firstAttribute="top" secondItem="PiO-xu-srz" secondAttribute="top" id="d90-5I-iW8"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="PiO-xu-srz"/>
                     </view>
                     <navigationItem key="navigationItem" id="DSq-Xg-x9t"/>
                     <connections>
@@ -94,7 +61,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Abw-qm-bqU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1476" y="152"/>
+            <point key="canvasLocation" x="758" y="152"/>
         </scene>
     </scenes>
 </document>

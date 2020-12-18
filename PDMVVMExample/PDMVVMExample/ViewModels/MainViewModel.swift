@@ -20,20 +20,16 @@ class MainViewModel: CollectionPDMVVMViewModel {
         var viewModels = [CellPDMVVMViewModel]()
         
         var model = PDMVVMModel(withTitle:"one")
-        var viewModel = CellPDMVVMViewModel(withModel: model, withReuseidentifier: "MainCell")
+        var viewModel = CellPDMVVMViewModel(withModel: model, withReuseidentifier: "MainViewCell")
         viewModels.append(viewModel)
         
         model = PDMVVMModel(withTitle:"One one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one ")
-        viewModel = CellPDMVVMViewModel(withModel: model, withReuseidentifier: "MainCell")
+        viewModel = CellPDMVVMViewModel(withModel: model, withReuseidentifier: "MainViewCell")
         viewModels.append(viewModel)
         
-        
-        model = PDMVVMModel(withTitle:"one")
-        viewModel = CellPDMVVMViewModel(withModel: model, withReuseidentifier: "MainCell")
-        viewModels.append(viewModel)
         
         model = PDMVVMModel(withTitle:"one one one one one one one one one one one one one one onef ")
-        viewModel = CellPDMVVMViewModel(withModel: model, withReuseidentifier: "MainCell")
+        viewModel = CellPDMVVMViewModel(withModel: model, withReuseidentifier: "MainViewCell")
         viewModels.append(viewModel)
         
         model = PDMVVMModel(withTitle:"one one one one one one one one one one one one one one onef ")
@@ -41,17 +37,19 @@ class MainViewModel: CollectionPDMVVMViewModel {
         viewModels.append(viewModel)
         
         model = PDMVVMModel(withTitle:"one one one one one one one one one one one one one one one one one one one one one one one one one one one one one onef ")
-        viewModel = CellPDMVVMViewModel(withModel: model, withReuseidentifier: "MainCell")
+        viewModel = CellPDMVVMViewModel(withModel: model, withReuseidentifier: "MainViewCell")
         viewModels.append(viewModel)
         
         model = PDMVVMModel(withTitle:"one one one one one one one one one one one one one one one ")
         viewModel = CellPDMVVMViewModel(withModel: model, withReuseidentifier: "MainCell")
-        //viewModels.append(viewModel)
+        viewModels.append(viewModel)
+         
         
         sections.append(section)
         section.sectionViewModels = viewModels
         
         
+        /*
         section = PDMVVMSection()
         //section.viewModel = CellPDMVVMViewModel(withModel:PDMVVMModel(withTitle:"Section 2" ), withReuseidentifier: "MainReusableView")
         
@@ -67,12 +65,13 @@ class MainViewModel: CollectionPDMVVMViewModel {
         
         sections.append(section)
         section.sectionViewModels = viewModels
+        */
         
         self.sections = sections
     }
     
     override func numberOfItemsInRow(forSection section: Int) -> Int {
-        return 2
+        return 1
     }
     
     override func minimumLineSpacingForSection(at section: Int) -> CGFloat {
@@ -88,7 +87,7 @@ class MainViewModel: CollectionPDMVVMViewModel {
     }
     
     override func automaticItemSize() -> Bool {
-           return false
+           return true
     }
     
     override func sizeForItem(at indexPath: IndexPath?) -> CGSize {
@@ -100,7 +99,7 @@ class MainViewModel: CollectionPDMVVMViewModel {
     }
 
     override func shouldHeightEqualWidth(_ indexPath: IndexPath?) -> Bool {
-        return true
+        return false
     }
     
     override func scrollDirection() -> UICollectionView.ScrollDirection {

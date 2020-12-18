@@ -15,7 +15,20 @@ open class PDMVVMCollectionViewCell: UICollectionViewCell {
             updateUI()
         }
     }
-    @IBOutlet public weak var plateView: UIView!
+    @IBOutlet public weak var plateView: UIView?
+    public var pdmvvmView: PDMVVMView? {
+        didSet {
+            if let pdmvvmView = pdmvvmView {
+                contentView.addSubview(pdmvvmView)
+                pdmvvmView.translatesAutoresizingMaskIntoConstraints = false
+                let leading = contentView.leadingAnchor.constraint(equalTo: pdmvvmView.leadingAnchor)
+                let trailing = contentView.trailingAnchor.constraint(equalTo: pdmvvmView.trailingAnchor)
+                let bottom = contentView.bottomAnchor.constraint(equalTo: pdmvvmView.bottomAnchor)
+                let top = contentView.topAnchor.constraint(equalTo: pdmvvmView.topAnchor)
+                NSLayoutConstraint.activate([leading, trailing, bottom, top])
+            }
+        }
+    }
     
     open var scrollDirection: UICollectionView.ScrollDirection = .vertical
     public static var useViewModelForCalculateMinimalSize = false

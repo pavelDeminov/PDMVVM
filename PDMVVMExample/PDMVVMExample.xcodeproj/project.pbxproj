@@ -10,6 +10,8 @@
 		95220A742563B02500E26CDE /* PDMVVMScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95220A712563B02400E26CDE /* PDMVVMScrollView.swift */; };
 		95220A752563B02500E26CDE /* ScrollViewPDMVVMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95220A722563B02400E26CDE /* ScrollViewPDMVVMViewController.swift */; };
 		95220A762563B02500E26CDE /* ScrollViewPDMVVMViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95220A732563B02400E26CDE /* ScrollViewPDMVVMViewModel.swift */; };
+		952C70CE258D12AD00E32050 /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952C70CD258D12AD00E32050 /* MainViewCell.swift */; };
+		952C70D1258D12D900E32050 /* MainViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 952C70D0258D12D900E32050 /* MainViewCell.xib */; };
 		952EF9092553E7F700BE55B5 /* PDMVVMModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952EF9072553E7F700BE55B5 /* PDMVVMModel.swift */; };
 		952EF90A2553E7F700BE55B5 /* PDMVVMRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952EF9082553E7F700BE55B5 /* PDMVVMRule.swift */; };
 		958E88572550321800DE5C0E /* CellPDMVVMViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958E88562550321700DE5C0E /* CellPDMVVMViewModel.swift */; };
@@ -44,6 +46,8 @@
 		95220A712563B02400E26CDE /* PDMVVMScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDMVVMScrollView.swift; sourceTree = "<group>"; };
 		95220A722563B02400E26CDE /* ScrollViewPDMVVMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewPDMVVMViewController.swift; sourceTree = "<group>"; };
 		95220A732563B02400E26CDE /* ScrollViewPDMVVMViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewPDMVVMViewModel.swift; sourceTree = "<group>"; };
+		952C70CD258D12AD00E32050 /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
+		952C70D0258D12D900E32050 /* MainViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewCell.xib; sourceTree = "<group>"; };
 		952EF9072553E7F700BE55B5 /* PDMVVMModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDMVVMModel.swift; sourceTree = "<group>"; };
 		952EF9082553E7F700BE55B5 /* PDMVVMRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDMVVMRule.swift; sourceTree = "<group>"; };
 		958E88562550321700DE5C0E /* CellPDMVVMViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellPDMVVMViewModel.swift; sourceTree = "<group>"; };
@@ -225,6 +229,8 @@
 				95EAEE9A220CD55A00019A8B /* MainCell.xib */,
 				95C2E03A2510ACC0002E3108 /* MainReusableView.swift */,
 				95C2E03C2510ACF0002E3108 /* MainReusableView.xib */,
+				952C70CD258D12AD00E32050 /* MainViewCell.swift */,
+				952C70D0258D12D900E32050 /* MainViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -299,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95EA184D2205FF9D00E7FEDB /* LaunchScreen.storyboard in Resources */,
+				952C70D1258D12D900E32050 /* MainViewCell.xib in Resources */,
 				95EA184A2205FF9D00E7FEDB /* Assets.xcassets in Resources */,
 				95EAEE9B220CD55A00019A8B /* MainCell.xib in Resources */,
 				95EA18482205FF9C00E7FEDB /* Main.storyboard in Resources */,
@@ -355,6 +362,7 @@
 				95C2E060251221EE002E3108 /* PDMVVMSection.swift in Sources */,
 				958E88572550321800DE5C0E /* CellPDMVVMViewModel.swift in Sources */,
 				95EAEE99220CD53300019A8B /* MainCell.swift in Sources */,
+				952C70CE258D12AD00E32050 /* MainViewCell.swift in Sources */,
 				95220A742563B02500E26CDE /* PDMVVMScrollView.swift in Sources */,
 				952EF9092553E7F700BE55B5 /* PDMVVMModel.swift in Sources */,
 			);
