@@ -51,9 +51,9 @@ open class PDMVVMView: UIView {
        
     }
     
-    open var beginEditingHandler: ((PDMVVMScrollView) -> ())?
-    open var endEditingHandler: ((PDMVVMScrollView) -> ())?
-    open var valueChangedHandler: ((PDMVVMScrollView) -> ())?
+    open var beginEditingHandler: ((PDMVVMView) -> ())?
+    open var endEditingHandler: ((PDMVVMView) -> ())?
+    open var valueChangedHandler: ((PDMVVMView) -> ())?
     
     public var viewModel: PDMVVMViewModel? {
         didSet {

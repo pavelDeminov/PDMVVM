@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "PDMVVM"
-  s.version      = "0.3.0"
+  s.version      = "0.3.1"
   s.platform = :ios
 
   s.swift_versions = "5.0"
