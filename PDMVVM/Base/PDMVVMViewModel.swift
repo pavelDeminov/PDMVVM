@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol PDMVVMViewModelDelegate {
+public protocol PDMVVMViewModelDelegate: class {
     func viewModelUpdated(viewModel: PDMVVMViewModel)
 }
 
@@ -44,7 +44,7 @@ open class PDMVVMViewModel: NSObject {
             }
         }
     }
-    open var viewModeldDelegate: PDMVVMViewModelDelegate?
+    open weak var viewModeldDelegate: PDMVVMViewModelDelegate?
     
     class func viewModelsArray(fromArrayOfModels models: [Any]?) -> [PDMVVMViewModel]? {
         var array = [PDMVVMViewModel]()

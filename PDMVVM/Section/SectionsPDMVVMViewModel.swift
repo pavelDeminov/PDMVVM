@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol PDMVVMSectionsViewModelDelegate {
+public protocol PDMVVMSectionsViewModelDelegate: class {
     func viewModel(_ viewModel: PDMVVMViewModel?, didDeleteModel model: Any?, at indexPath: IndexPath?, completion: @escaping (_ finished: Bool) -> Void)
 
     func viewModel(_ viewModel: PDMVVMViewModel?, didInsertModel model: Any?, at indexPath: IndexPath?, completion: @escaping (_ finished: Bool) -> Void)
@@ -36,7 +36,7 @@ public protocol PDMVVMSectionsViewModelDelegate {
 
 open class SectionsPDMVVMViewModel: PDMVVMViewModel {
     
-    public var sectionsUpdatedDelegate: PDMVVMSectionsViewModelDelegate?
+    public weak var sectionsUpdatedDelegate: PDMVVMSectionsViewModelDelegate?
     
     open func automaticItemSize() -> Bool {
         return true

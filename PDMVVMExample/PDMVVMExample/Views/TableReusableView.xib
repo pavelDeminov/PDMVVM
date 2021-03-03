@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="0dE-Pn-Ht6" customClass="TableReusableView" customModule="PDMVVMExample" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="415" height="254"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gyr-A3-5W3">
+                    <rect key="frame" x="0.0" y="44" width="415" height="176"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFM-x9-N9G">
+                            <rect key="frame" x="20" y="20" width="375" height="136"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="Myh-CO-Md8"/>
+                    <color key="backgroundColor" systemColor="systemTealColor"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="IFM-x9-N9G" secondAttribute="bottom" constant="20" id="VI8-cv-lbC"/>
+                        <constraint firstItem="IFM-x9-N9G" firstAttribute="top" secondItem="Gyr-A3-5W3" secondAttribute="top" constant="20" id="pIg-YR-im5"/>
+                        <constraint firstAttribute="trailing" secondItem="IFM-x9-N9G" secondAttribute="trailing" constant="20" id="sEq-st-Sz0"/>
+                        <constraint firstItem="IFM-x9-N9G" firstAttribute="leading" secondItem="Gyr-A3-5W3" secondAttribute="leading" constant="20" id="w05-x3-7qt"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="L4S-be-MFB"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="Gyr-A3-5W3" firstAttribute="leading" secondItem="0dE-Pn-Ht6" secondAttribute="leading" id="1Kw-Vw-ySo"/>
+                <constraint firstAttribute="trailing" secondItem="Gyr-A3-5W3" secondAttribute="trailing" id="Plm-47-IUd"/>
+                <constraint firstItem="L4S-be-MFB" firstAttribute="bottom" secondItem="Gyr-A3-5W3" secondAttribute="bottom" id="VgK-2l-Q8M"/>
+                <constraint firstItem="Gyr-A3-5W3" firstAttribute="top" secondItem="L4S-be-MFB" secondAttribute="top" id="ahL-GU-Pru"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="titleLabel" destination="IFM-x9-N9G" id="v3K-Bw-5e4"/>
+            </connections>
+            <point key="canvasLocation" x="125.36231884057972" y="-623.4375"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -8,6 +8,6 @@
 
 import UIKit
 
-class MainViewController: CollectionPDMVVMViewController {
-
+class CollectionViewController: CollectionPDMVVMViewController {
+    
 }

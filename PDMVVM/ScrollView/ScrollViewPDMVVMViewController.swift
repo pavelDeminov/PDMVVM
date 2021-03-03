@@ -10,7 +10,7 @@ import UIKit
 
 open class ScrollViewPDMVVMViewController: SectionsPDMVVMViewController {
     
-    @IBOutlet open weak var scrollView: UIScrollView!
+    @IBOutlet open weak var scrollView: UIScrollView?
     
     open override var viewModel: PDMVVMViewModel? {
         didSet {
@@ -25,25 +25,51 @@ open class ScrollViewPDMVVMViewController: SectionsPDMVVMViewController {
         }
     }
     
-    private var cellIndexPathDict = [IndexPath:PDMVVMScrollView]()
+    private var cellIndexPathDict = [IndexPath:PDMVVMView]()
     
     open override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
     
+    public override func loadView() {
+        if fromCode {
+            let view = UIView()
+            view.backgroundColor = UIColor.white
+            let scrollView = UIScrollView(frame: CGRect.zero)
+            scrollView.translatesAutoresizingMaskIntoConstraints = false
+            scrollView.backgroundColor = UIColor.clear
+            view.addSubview(scrollView)
+            self.scrollView = scrollView
+            self.view = view
+            
+            let top: NSLayoutConstraint = scrollView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 0)
+            let bottom: NSLayoutConstraint = scrollView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor, constant: 0)
+            let left: NSLayoutConstraint = scrollView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0)
+            let right: NSLayoutConstraint = scrollView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0)
+            NSLayoutConstraint.activate([top,bottom,left,right])
+            
+        } else {
+            super.loadView()
+        }
+    }
+    
     open override func setup() {
+        
+        guard let scrollView = scrollView else {
+            return
+        }
         
         for view in scrollView.subviews {
             view.removeFromSuperview()
         }
-        cellIndexPathDict = [IndexPath: PDMVVMScrollView]()
+        cellIndexPathDict = [IndexPath: PDMVVMView]()
         
         guard let scrollViewModel = scrollViewModel else {
             return
         }
         
-        var prevView: PDMVVMScrollView?
+        var prevView: PDMVVMView?
         var s = Int(0)
         for section in scrollViewModel.sections {
             if let sectionViewModels = section.sectionViewModels {
@@ -54,7 +80,7 @@ open class ScrollViewPDMVVMViewController: SectionsPDMVVMViewController {
                     if let reuseIdentifier = viewModel.reuseIdentifier {
                         let nibExist = nibExists(name: reuseIdentifier)
                         if nibExist {
-                            guard let view = (Bundle.main.loadNibNamed(reuseIdentifier, owner: nil, options: nil))?[0] as? PDMVVMScrollView else {
+                            guard let view = (Bundle.main.loadNibNamed(reuseIdentifier, owner: nil, options: nil))?[0] as? PDMVVMView else {
                                 continue
                             }
                             let indexPath = IndexPath(row: r, section: s)
@@ -73,13 +99,13 @@ open class ScrollViewPDMVVMViewController: SectionsPDMVVMViewController {
                                 scrollView.addConstraint(top)
                             }
                             
-                            let leading = scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: sectionInsets.left)
+                            let leading = view.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: sectionInsets.left)
                             scrollView.addConstraint(leading)
                             
-                            let trailing = scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: sectionInsets.right)
+                            let trailing = view.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: sectionInsets.right)
                             scrollView.addConstraint(trailing)
                             
-                            let vertical = scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+                            let vertical = view.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
                             scrollView.addConstraint(vertical)
                             
                             prevView = view
@@ -90,7 +116,7 @@ open class ScrollViewPDMVVMViewController: SectionsPDMVVMViewController {
                 
                 s += 1
                 if let prevView = prevView {
-                    let bottom = scrollView.bottomAnchor.constraint(equalTo: prevView.bottomAnchor, constant: sectionInsets.bottom)
+                    let bottom = prevView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: sectionInsets.bottom)
                     scrollView.addConstraint(bottom)
                 }
                 
@@ -99,11 +125,11 @@ open class ScrollViewPDMVVMViewController: SectionsPDMVVMViewController {
         
     }
     
-    open func prepare(_ cell: PDMVVMScrollView?, for indexPath: IndexPath?) {
+    open func prepare(_ cell: PDMVVMView?, for indexPath: IndexPath?) {
        
     }
     
-    open func cell(for indexPath: IndexPath?) -> PDMVVMScrollView? {
+    open func cell(for indexPath: IndexPath?) -> PDMVVMView? {
         if let indexPath = indexPath {
             return cellIndexPathDict[indexPath]
         } else {
@@ -128,8 +154,12 @@ extension ScrollViewPDMVVMViewController : PDMVVMSectionsViewModelDelegate {
     @objc open override func viewModelUpdated(viewModel: PDMVVMViewModel) {
         super.viewModelUpdated(viewModel: viewModel)
         
+        guard let scrollView = scrollView else {
+            return
+        }
+        
         for view in scrollView.subviews {
-            if let mvvmView = view as? PDMVVMScrollView {
+            if let mvvmView = view as? PDMVVMView {
                 mvvmView.updateUI()
             }
         }

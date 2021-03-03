@@ -24,10 +24,10 @@
             </objects>
             <point key="canvasLocation" x="-358" y="153"/>
         </scene>
-        <!--Main View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="J8F-DF-UlP">
             <objects>
-                <viewController storyboardIdentifier="AddEmployeesViewController" id="11z-W6-ojq" customClass="MainViewController" customModule="PDMVVMExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="11z-W6-ojq" customClass="HomeViewController" customModule="PDMVVMExample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aDS-Gh-K04">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -44,20 +44,44 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xL5-O2-k8A">
+                                <rect key="frame" x="153" y="318.5" width="69" height="30"/>
+                                <state key="normal" title="TableView"/>
+                                <connections>
+                                    <action selector="tableViewActionWithSender:" destination="11z-W6-ojq" eventType="touchUpInside" id="Vrh-F1-ASi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AxZ-9s-c5v">
+                                <rect key="frame" x="136.5" y="398.5" width="102" height="30"/>
+                                <state key="normal" title="CollectionView"/>
+                                <connections>
+                                    <action selector="collectionViewActionWithSender:" destination="11z-W6-ojq" eventType="touchUpInside" id="sb0-as-8N3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qlo-5h-X7X">
+                                <rect key="frame" x="151.5" y="238.5" width="72" height="30"/>
+                                <state key="normal" title="ScrollView"/>
+                                <connections>
+                                    <action selector="scrollViewActionWithSender:" destination="11z-W6-ojq" eventType="touchUpInside" id="ukZ-ew-7rN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PiO-xu-srz"/>
                         <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="PiO-xu-srz" firstAttribute="trailing" secondItem="hbh-hB-eJM" secondAttribute="trailing" id="7Fc-lc-UA2"/>
+                            <constraint firstItem="xL5-O2-k8A" firstAttribute="top" secondItem="qlo-5h-X7X" secondAttribute="bottom" constant="50" id="Alw-z6-X0p"/>
                             <constraint firstItem="hbh-hB-eJM" firstAttribute="leading" secondItem="PiO-xu-srz" secondAttribute="leading" id="Ipv-cK-KdZ"/>
                             <constraint firstItem="PiO-xu-srz" firstAttribute="bottom" secondItem="hbh-hB-eJM" secondAttribute="bottom" id="WRm-cr-v0y"/>
+                            <constraint firstItem="AxZ-9s-c5v" firstAttribute="top" secondItem="xL5-O2-k8A" secondAttribute="bottom" constant="50" id="cXf-87-PZ9"/>
                             <constraint firstItem="hbh-hB-eJM" firstAttribute="top" secondItem="PiO-xu-srz" secondAttribute="top" id="d90-5I-iW8"/>
+                            <constraint firstItem="qlo-5h-X7X" firstAttribute="centerX" secondItem="aDS-Gh-K04" secondAttribute="centerX" id="e1k-N8-2u4"/>
+                            <constraint firstItem="xL5-O2-k8A" firstAttribute="centerX" secondItem="aDS-Gh-K04" secondAttribute="centerX" id="efU-M1-HMZ"/>
+                            <constraint firstItem="xL5-O2-k8A" firstAttribute="centerY" secondItem="aDS-Gh-K04" secondAttribute="centerY" id="xhf-PG-hkc"/>
+                            <constraint firstItem="AxZ-9s-c5v" firstAttribute="centerX" secondItem="aDS-Gh-K04" secondAttribute="centerX" id="zdJ-il-zac"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="DSq-Xg-x9t"/>
-                    <connections>
-                        <outlet property="collectionView" destination="hbh-hB-eJM" id="XKI-0R-X8h"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Abw-qm-bqU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

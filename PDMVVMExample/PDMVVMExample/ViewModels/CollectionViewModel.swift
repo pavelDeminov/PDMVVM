@@ -8,64 +8,44 @@
 
 import UIKit
 
-class MainViewModel: CollectionPDMVVMViewModel {
+class CollectionViewModel: CollectionPDMVVMViewModel {
     
     override func setup() {
         
         var sections = [PDMVVMSection]()
         
         var section = PDMVVMSection()
-        //section.viewModel = CellPDMVVMViewModel(withModel:PDMVVMModel(withTitle:"Section 1" ), withReuseidentifier: "MainReusableView")
+        section.viewModel = CellPDMVVMViewModel(withModel:PDMVVMModel(withTitle:"Collection cells" ), withReuseidentifier: "CollectionReusableView")
         
         var viewModels = [CellPDMVVMViewModel]()
         
         var model = PDMVVMModel(withTitle:"one")
-        var viewModel = CellPDMVVMViewModel(withModel: model, withReuseidentifier: "MainViewCell")
+        var viewModel = CellPDMVVMViewModel(withModel: model, withReuseidentifier: "CollectionCell")
         viewModels.append(viewModel)
         
         model = PDMVVMModel(withTitle:"One one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one ")
-        viewModel = CellPDMVVMViewModel(withModel: model, withReuseidentifier: "MainViewCell")
+        viewModel = CellPDMVVMViewModel(withModel: model, withReuseidentifier: "CollectionCell")
         viewModels.append(viewModel)
-        
-        
-        model = PDMVVMModel(withTitle:"one one one one one one one one one one one one one one onef ")
-        viewModel = CellPDMVVMViewModel(withModel: model, withReuseidentifier: "MainViewCell")
-        viewModels.append(viewModel)
-        
-        model = PDMVVMModel(withTitle:"one one one one one one one one one one one one one one onef ")
-        viewModel = CellPDMVVMViewModel(withModel: model, withReuseidentifier: "MainCell")
-        viewModels.append(viewModel)
-        
-        model = PDMVVMModel(withTitle:"one one one one one one one one one one one one one one one one one one one one one one one one one one one one one onef ")
-        viewModel = CellPDMVVMViewModel(withModel: model, withReuseidentifier: "MainViewCell")
-        viewModels.append(viewModel)
-        
-        model = PDMVVMModel(withTitle:"one one one one one one one one one one one one one one one ")
-        viewModel = CellPDMVVMViewModel(withModel: model, withReuseidentifier: "MainCell")
-        viewModels.append(viewModel)
-         
         
         sections.append(section)
         section.sectionViewModels = viewModels
         
-        
-        /*
         section = PDMVVMSection()
-        //section.viewModel = CellPDMVVMViewModel(withModel:PDMVVMModel(withTitle:"Section 2" ), withReuseidentifier: "MainReusableView")
+        section.viewModel = CellPDMVVMViewModel(withModel:PDMVVMModel(withTitle:"View cells" ), withReuseidentifier: "CollectionReusableView")
         
         viewModels = [CellPDMVVMViewModel]()
         
         model = PDMVVMModel(withTitle:"two two two ")
-        viewModel = CellPDMVVMViewModel(withModel: model, withReuseidentifier: "MainCell")
+        viewModel = CellPDMVVMViewModel(withModel: model, withReuseidentifier: "ViewCell")
         viewModels.append(viewModel)
         
         model = PDMVVMModel(withTitle:"two two two two two two two two two two two two two two two")
-        viewModel = CellPDMVVMViewModel(withModel: model, withReuseidentifier: "MainCell")
+        viewModel = CellPDMVVMViewModel(withModel: model, withReuseidentifier: "ViewCell")
         viewModels.append(viewModel)
         
         sections.append(section)
         section.sectionViewModels = viewModels
-        */
+        
         
         self.sections = sections
     }

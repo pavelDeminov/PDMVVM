@@ -15,8 +15,18 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    @IBAction func start(sender: UIButton) {
-        let vc = MainViewController.create()
+    @IBAction func tableViewAction(sender: UIButton) {
+        let vc = TableViewController.create()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func scrollViewAction(sender: UIButton) {
+        let vc = ScrollViewController.create()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func collectionViewAction(sender: UIButton) {
+        let vc = CollectionViewController.create()
         navigationController?.pushViewController(vc, animated: true)
     }
 
